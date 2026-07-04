@@ -1,36 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Navbar from '../components/Navbar';
 
 export default function Home() {
   return (
     <>
-      
+      <Navbar />
 
-<nav className="absolute top-0 left-0 w-full z-50 bg-transparent text-on-primary">
-<div className="flex justify-between items-center h-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
-<div className="font-headline-sm text-headline-sm tracking-tight text-on-primary cursor-pointer active:opacity-70 transition-colors duration-300">
-                RE Lodronio Builders Inc.
-            </div>
-<div className="hidden md:flex gap-8 font-label-caps text-label-caps">
-<Link className="text-on-primary border-b border-on-primary pb-1 uppercase tracking-widest cursor-pointer active:opacity-70 transition-colors duration-300" to="/">Home</Link>
-<Link className="text-on-primary/70 hover:text-on-primary uppercase tracking-widest cursor-pointer active:opacity-70 transition-colors duration-300" to="/about">About Us</Link>
-<Link className="text-on-primary/70 hover:text-on-primary uppercase tracking-widest cursor-pointer active:opacity-70 transition-colors duration-300" to="/contact">Contact</Link>
-<Link className="text-on-primary/70 hover:text-on-primary uppercase tracking-widest cursor-pointer active:opacity-70 transition-colors duration-300" to="/">Policy</Link>
-</div>
-
-<div className="md:hidden">
-<span className="material-symbols-outlined cursor-pointer">menu</span>
-</div>
-</div>
-</nav>
-
-<header className="relative w-full h-auto pt-32 pb-12 flex items-end justify-start overflow-hidden">
+<header className="relative w-full h-auto pt-20 pb-20 flex items-end justify-start overflow-hidden">
 
 <div className="absolute inset-0 z-0 after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-r after:from-black/60 after:to-transparent">
 <div className="w-full h-full bg-cover bg-center object-cover" data-alt="A stunning modern architectural home at sunset. The house features large floor-to-ceiling windows illuminated warmly from within, showcasing a sleek interior. The exterior is composed of clean lines, dark wood paneling, and off-form concrete. The sky is a dramatic gradient of deep oranges and purples, reflecting off a calm, dark water feature in the foreground. High-end real estate photography style, emphasizing light, structure, and luxury." style={{ backgroundImage: 'url(\'https://lh3.googleusercontent.com/aida-public/AB6AXuDMryR6Z7gke1Xjfyp_p76M3xDMBXbzKovycfNcdlHF3zJCxMxZBMo13J-R1qRSbIKPpcnNVBtLv8PgDelrpSXwEm3OjVuokqqd4JQtV0RD2CLoLa9_EMweFqxDibKyGG0KRoobAVyDz_yY8yBHBe-jBU2rfU5r1hyb_ZRPI7zmiKXESQADTW6OAyl_p7rv0HqqyfmkCEIfb9jPXuYwwP50bmdcoerzIA1Fp1lY8Twk4yS7K1XE9BY04Cy-Xh4rMsi9aRSY_wEAURM\')' }}></div>
 </div>
 
-<div className="relative z-10 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop text-on-primary mt-20 md:mt-0">
+<div className="relative z-10 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop text-on-primary">
 <h1 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg max-w-4xl leading-tight">
                 Every house is built by someone, but <em class="italic">God</em> is the builder of everything
             </h1>

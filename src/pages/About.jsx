@@ -1,30 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Navbar from '../components/Navbar';
 
 export default function About() {
   return (
     <>
-      
-
-<header className="w-full top-0 bg-surface dark:bg-surface border-b border-outline-variant/20 sticky z-50">
-<nav className="flex justify-between items-center h-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
-<Link className="font-headline-sm text-headline-sm tracking-tight text-primary dark:text-on-primary" to="/">
-                RE Lodronio Builders Inc.
-            </Link>
-
-<ul className="hidden md:flex gap-8 items-center font-label-caps text-label-caps uppercase">
-<li><Link className="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-on-primary transition-colors duration-300 cursor-pointer active:opacity-70" to="/">Home</Link></li>
-<li><Link className="text-primary dark:text-on-primary border-b border-primary pb-1 cursor-pointer active:opacity-70" to="/about">About Us</Link></li>
-<li><Link className="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-on-primary transition-colors duration-300 cursor-pointer active:opacity-70" to="/contact">Contact</Link></li>
-<li><Link className="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-on-primary transition-colors duration-300 cursor-pointer active:opacity-70" to="/">Policy</Link></li>
-</ul>
-
-<button className="md:hidden text-primary">
-<span className="material-symbols-outlined">menu</span>
-</button>
-</nav>
-</header>
-<main className="flex-grow">
+      <Navbar />
+      <main className="flex-grow">
 
 <section className="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
 <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter">

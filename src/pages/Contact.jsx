@@ -1,28 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Navbar from '../components/Navbar';
 
 export default function Contact() {
   return (
     <>
-      
-
-<nav className="bg-surface dark:bg-surface text-primary dark:text-on-primary font-label-caps text-label-caps w-full top-0 border-b border-outline-variant/20 sticky z-50">
-<div className="flex justify-between items-center h-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
-<div className="font-headline-sm text-headline-sm tracking-tight text-primary dark:text-on-primary">
-                RE Lodronio Builders Inc.
-            </div>
-<div className="hidden md:flex space-x-gutter">
-<Link className="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-on-primary transition-colors duration-300 cursor-pointer active:opacity-70 flex items-center h-full pt-1" to="/">Home</Link>
-<Link className="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-on-primary transition-colors duration-300 cursor-pointer active:opacity-70 flex items-center h-full pt-1" to="/about">About Us</Link>
-<Link className="text-primary dark:text-on-primary border-b border-primary hover:text-primary dark:hover:text-on-primary transition-colors duration-300 cursor-pointer active:opacity-70 flex items-center h-full pt-1" to="/contact">Contact</Link>
-<Link className="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-on-primary transition-colors duration-300 cursor-pointer active:opacity-70 flex items-center h-full pt-1" to="/">Policy</Link>
-</div>
-
-<button className="md:hidden p-2 text-on-surface-variant">
-<span className="material-symbols-outlined" data-icon="menu">menu</span>
-</button>
-</div>
-</nav>
+      <Navbar />
 
 <main className="flex-grow flex flex-col max-w-container-max mx-auto w-full">
 
