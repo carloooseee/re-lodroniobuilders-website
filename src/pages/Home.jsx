@@ -17,7 +17,7 @@ export default function Home() {
 
         <div className="relative z-10 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop text-on-primary">
           <h1 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg max-w-4xl leading-tight">
-            Every house is built by someone, but <em class="italic">God</em> is the builder of everything
+            Every house is built by someone, but <em className="italic">God</em> is the builder of everything
           </h1>
           <p className="font-label-sm text-label-sm mt-4 opacity-80 uppercase tracking-wider">Hebrews 3:4</p>
           <div className="mt-12 flex items-end justify-between border-b border-on-primary/30 pb-4">

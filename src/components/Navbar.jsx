@@ -7,6 +7,7 @@ export default function Navbar() {
   const isHome = path === '/';
 
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,20 +41,20 @@ export default function Navbar() {
   };
 
   const headerClass = `w-full fixed top-0 left-0 z-50 transition-all duration-300 border-b ${
-    showTransparent
+    showTransparent && !isOpen
       ? 'bg-transparent text-white border-transparent'
       : 'bg-surface text-primary border-outline-variant/20 shadow-sm'
   }`;
 
   const logoClass = `font-headline-sm text-headline-sm tracking-tight transition-colors duration-300 ${
-    showTransparent ? 'text-white' : 'text-primary'
+    showTransparent && !isOpen ? 'text-white' : 'text-primary'
   }`;
 
   return (
     <>
       <header className={headerClass}>
         <nav className="flex justify-between items-center h-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
-          <Link className={logoClass} to="/">
+          <Link className={logoClass} to="/" onClick={() => setIsOpen(false)}>
             RE Lodronio Builders Inc.
           </Link>
 
@@ -63,10 +64,22 @@ export default function Navbar() {
             <Link className={linkClass('/contact')} to="/contact">Contact</Link>
           </div>
 
-          <button className={`md:hidden ${showTransparent ? 'text-white' : 'text-primary'}`}>
-            <span className="material-symbols-outlined">menu</span>
+          <button 
+            className={`md:hidden ${showTransparent && !isOpen ? 'text-white font-medium' : 'text-primary'} cursor-pointer flex items-center justify-center p-3 relative z-50`}
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle navigation menu"
+          >
+            <span className="material-symbols-outlined text-[32px] select-none">{isOpen ? 'close' : 'menu'}</span>
           </button>
         </nav>
+
+        {isOpen && (
+          <div className="md:hidden bg-surface text-primary border-t border-outline-variant/20 px-margin-mobile py-6 flex flex-col gap-4 shadow-lg">
+            <Link className={`font-label-caps text-label-caps uppercase tracking-widest py-2 border-b border-outline-variant/10 ${path === '/' ? 'text-primary font-bold' : 'text-on-surface-variant'}`} to="/" onClick={() => setIsOpen(false)}>Home</Link>
+            <Link className={`font-label-caps text-label-caps uppercase tracking-widest py-2 border-b border-outline-variant/10 ${path === '/about' ? 'text-primary font-bold' : 'text-on-surface-variant'}`} to="/about" onClick={() => setIsOpen(false)}>About Us</Link>
+            <Link className={`font-label-caps text-label-caps uppercase tracking-widest py-2 ${path === '/contact' ? 'text-primary font-bold' : 'text-on-surface-variant'}`} to="/contact" onClick={() => setIsOpen(false)}>Contact</Link>
+          </div>
+        )}
       </header>
       {/* Spacer to push content down on pages with a solid navbar */}
       {!isHome && <div className="h-20" />}
