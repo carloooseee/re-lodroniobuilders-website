@@ -127,12 +127,6 @@ export default function Contact() {
                     <div className="font-headline-sm text-headline-sm text-primary dark:text-on-primary">
                         © 2024 RE Lodronio Builders Inc.
                     </div>
-                    <div className="flex flex-wrap justify-center gap-6">
-                        <Link className="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-on-primary transition-colors duration-300" to="/">Home</Link>
-                        <Link className="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-on-primary transition-colors duration-300" to="/about">About Us</Link>
-                        <Link className="text-primary dark:text-on-primary underline hover:text-primary dark:hover:text-on-primary transition-colors duration-300" to="/contact">Contact</Link>
-                        <Link className="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-on-primary transition-colors duration-300" to="/">Policy</Link>
-                    </div>
                     <div className="text-on-surface-variant text-sm font-label-caps uppercase tracking-widest">
                         Building with purpose.
                     </div>

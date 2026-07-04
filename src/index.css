@@ -56,14 +56,14 @@
   --spacing-unit: 8px;
   --spacing-margin-desktop: 64px;
 
-  --font-headline-lg: "Bodoni Moda", serif;
+  --font-headline-lg: "Work Sans", sans-serif;
   --font-label-caps: "Work Sans", sans-serif;
   --font-body-md: "Work Sans", sans-serif;
-  --font-display-lg: "Bodoni Moda", serif;
-  --font-display-lg-mobile: "Bodoni Moda", serif;
+  --font-display-lg: "Work Sans", sans-serif;
+  --font-display-lg-mobile: "Work Sans", sans-serif;
   --font-body-lg: "Work Sans", sans-serif;
-  --font-headline-md: "Bodoni Moda", serif;
-  --font-headline-sm: "Bodoni Moda", serif;
+  --font-headline-md: "Work Sans", sans-serif;
+  --font-headline-sm: "Work Sans", sans-serif;
   --font-label-sm: "Work Sans", sans-serif;
 
   /* Typography utilities */
