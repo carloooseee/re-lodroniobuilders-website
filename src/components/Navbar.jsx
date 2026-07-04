@@ -11,14 +11,21 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
+      // Transition to solid color when we scroll past the first viewport-height section
+      if (window.scrollY > window.innerHeight - 80) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
       }
     };
+    // Run once on mount to set correct initial state
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
   }, []);
 
   const showTransparent = isHome && !isScrolled;

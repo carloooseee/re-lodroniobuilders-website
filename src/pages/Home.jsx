@@ -9,7 +9,7 @@ export default function Home() {
     <>
       <Navbar />
 
-      <header className="relative w-full h-auto pt-20 pb-20 flex items-end justify-start overflow-hidden">
+      <header className="relative w-full min-h-screen pt-20 pb-20 flex items-end justify-start overflow-hidden">
 
         <div className="absolute inset-0 z-0 after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-r after:from-black/60 after:to-transparent">
           <div className="w-full h-full bg-cover bg-center object-cover" data-alt="A stunning modern architectural home at sunset. The house features large floor-to-ceiling windows illuminated warmly from within, showcasing a sleek interior. The exterior is composed of clean lines, dark wood paneling, and off-form concrete. The sky is a dramatic gradient of deep oranges and purples, reflecting off a calm, dark water feature in the foreground. High-end real estate photography style, emphasizing light, structure, and luxury." style={{ backgroundImage: `url(${placeholderImg1})` }}></div>
