@@ -9,18 +9,28 @@ export default function Home() {
     <>
       <Navbar />
 
-      <header className="relative w-full min-h-screen pt-20 pb-20 flex items-end justify-start overflow-hidden">
+      <header className="relative w-full min-h-screen pt-28 pb-10 flex flex-col justify-between overflow-hidden">
 
         <div className="absolute inset-0 z-0 after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-r after:from-black/60 after:to-transparent">
           <div className="w-full h-full bg-cover bg-center object-cover" data-alt="A stunning modern architectural home at sunset. The house features large floor-to-ceiling windows illuminated warmly from within, showcasing a sleek interior. The exterior is composed of clean lines, dark wood paneling, and off-form concrete. The sky is a dramatic gradient of deep oranges and purples, reflecting off a calm, dark water feature in the foreground. High-end real estate photography style, emphasizing light, structure, and luxury." style={{ backgroundImage: `url(${placeholderImg1})` }}></div>
         </div>
 
+        {/* Top Spacer to balance the layout with header/navbar */}
+        <div className="h-20"></div>
+
+        {/* Centered but Left-Aligned Bible Verse */}
+        <div className="relative z-10 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop text-on-primary flex flex-col items-start justify-center flex-grow">
+          <div className="max-w-4xl text-left">
+            <h1 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg leading-tight">
+              Every house is built by someone, but <em className="italic">God</em> is the builder of everything
+            </h1>
+            <p className="font-label-sm text-label-sm mt-4 opacity-80 uppercase tracking-wider">Hebrews 3:4</p>
+          </div>
+        </div>
+
+        {/* Bottom Banner */}
         <div className="relative z-10 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop text-on-primary">
-          <h1 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg max-w-4xl leading-tight">
-            Every house is built by someone, but <em className="italic">God</em> is the builder of everything
-          </h1>
-          <p className="font-label-sm text-label-sm mt-4 opacity-80 uppercase tracking-wider">Hebrews 3:4</p>
-          <div className="mt-12 flex items-end justify-between border-b border-on-primary/30 pb-4">
+          <div className="flex items-end justify-between border-b border-on-primary/30 pb-4">
             <h2 className="font-headline-md text-headline-md italic">Residence project</h2>
             <div className="flex items-center gap-4">
               <div className="flex gap-2">
