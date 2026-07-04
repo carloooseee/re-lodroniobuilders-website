@@ -1,18 +1,45 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import placeholderImg from '../assets/placeholder.jpg';
 import placeholderImg1 from '../assets/placeholder1.jpg';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 
 export default function Home() {
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  const slides = [
+    placeholderImg1,
+    placeholderImg,
+    placeholderImg1,
+    placeholderImg,
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % slides.length);
+    }, 6000); // cycle every 6 seconds
+    return () => clearInterval(timer);
+  }, [slides.length]);
+
   return (
     <>
       <Navbar />
 
       <header className="relative w-full min-h-screen pt-28 pb-10 flex flex-col justify-between overflow-hidden">
 
-        <div className="absolute inset-0 z-0 after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-r after:from-black/60 after:to-transparent">
-          <div className="w-full h-full bg-cover bg-center object-cover" data-alt="A stunning modern architectural home at sunset. The house features large floor-to-ceiling windows illuminated warmly from within, showcasing a sleek interior. The exterior is composed of clean lines, dark wood paneling, and off-form concrete. The sky is a dramatic gradient of deep oranges and purples, reflecting off a calm, dark water feature in the foreground. High-end real estate photography style, emphasizing light, structure, and luxury." style={{ backgroundImage: `url(${placeholderImg1})` }}></div>
+        <div className="absolute inset-0 z-0 after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-r after:from-black/60 after:to-transparent overflow-hidden">
+          {slides.map((img, idx) => (
+            <div
+              key={idx}
+              className="absolute inset-0 bg-cover bg-center"
+              style={{
+                backgroundImage: `url(${img})`,
+                opacity: idx === activeSlide ? 1 : 0,
+                transform: idx === activeSlide ? 'scale(1.08)' : 'scale(1)',
+                transition: 'opacity 1.5s ease-in-out, transform 6.0s cubic-bezier(0.25, 1, 0.5, 1)',
+              }}
+            />
+          ))}
         </div>
 
         {/* Top Spacer to balance the layout with header/navbar */}
@@ -34,12 +61,26 @@ export default function Home() {
             <h2 className="font-headline-md text-headline-md italic">Residence project</h2>
             <div className="flex items-center gap-4">
               <div className="flex gap-2">
-                <div className="h-1 w-12 bg-on-primary"></div>
-                <div className="h-1 w-12 bg-on-primary/30"></div>
-                <div className="h-1 w-12 bg-on-primary/30"></div>
-                <div className="h-1 w-12 bg-on-primary/30"></div>
+                {slides.map((_, idx) => {
+                  const isActive = idx === activeSlide;
+                  const isPrevious = idx < activeSlide;
+                  return (
+                    <div
+                      key={idx}
+                      className="h-1 w-12 bg-on-primary/30 relative overflow-hidden rounded-full"
+                    >
+                      <div
+                        className="h-full bg-on-primary absolute top-0 left-0"
+                        style={{
+                          width: isPrevious ? '100%' : isActive ? '100%' : '0%',
+                          transition: isActive ? 'width 6000ms linear' : 'width 0ms linear',
+                        }}
+                      />
+                    </div>
+                  );
+                })}
               </div>
-              <span className="font-label-caps text-label-caps ml-4">1/4</span>
+              <span className="font-label-caps text-label-caps ml-4">{activeSlide + 1}/4</span>
             </div>
           </div>
         </div>
