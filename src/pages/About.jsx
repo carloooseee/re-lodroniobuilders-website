@@ -1,4 +1,5 @@
 import React from 'react';
+import placeholderImg from '../assets/placeholder.jpg';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 
@@ -41,7 +42,7 @@ export default function About() {
 <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter items-start">
 <div className="md:col-span-5">
 <div className="relative w-full aspect-[4/5] bg-surface-variant overflow-hidden group">
-<img alt="Ar. Roco E. Lodronio" className="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-105" data-alt="Black and white professional portrait of a male architect with glasses, light facial hair, wearing a dark blazer over a black shirt, looking directly at the camera with a subtle smile. High-end editorial lighting, crisp details, architectural studio setting implied. The image should convey experience, trust, and refined professionalism." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBO5s7YVzNQMNbPjZdkNdRJjPJRPrswDbxhzCnk7EowhB8Rt4JyA4djWhOMcfa1hyN7JmcBYBOKFlzaOlWutR2BGp2o0lcFvWXROm0BpEHYgFN6dbFHE7Ll6JW3x5VaIxiBbCjU24N6Pi7_irZp-ZU4OYeszRkSWUpWGnipi_Hxag7JY7tPz0xxgxKqmmWFcdFFJttjrtX5D8NNf8z3IRNNcrYQUStATKyvoFMlWcZB4u3zX24vTJ2CGjUW5AqHIP97IqdItLJ_G9g" />
+<img alt="Ar. Roco E. Lodronio" className="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-105" data-alt="Black and white professional portrait of a male architect with glasses, light facial hair, wearing a dark blazer over a black shirt, looking directly at the camera with a subtle smile. High-end editorial lighting, crisp details, architectural studio setting implied. The image should convey experience, trust, and refined professionalism." src={placeholderImg} />
 </div>
 <div className="flex justify-between items-center mt-4 font-label-caps text-label-caps uppercase text-on-surface-variant text-[10px]">
 <span>LAS PINAS, PH</span>
@@ -149,26 +150,26 @@ export default function About() {
 </div>
 </section>
 
-<section className="bg-primary text-on-primary py-section-gap px-margin-mobile md:px-margin-desktop">
+<section className="text-white py-section-gap px-margin-mobile md:px-margin-desktop" style={{ backgroundColor: 'rgb(29, 29, 29)' }}>
 <div className="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-12 gap-gutter">
 <div className="md:col-span-4 mb-12 md:mb-0">
-<span className="font-label-caps text-label-caps uppercase text-on-primary-fixed-variant mb-6 block">( WHAT WE DO )</span>
+<span className="font-label-caps text-label-caps uppercase text-white/70 mb-6 block">( WHAT WE DO )</span>
 <h2 className="font-headline-md text-headline-md">
                         Residential,<br />commercial, <em className="font-serif italic">interior.</em>
 </h2>
 </div>
 <div className="md:col-span-6 md:col-start-7 flex flex-col gap-8">
-<div className="border-b border-on-primary-fixed-variant/30 pb-6">
+<div className="border-b border-white/20 pb-6">
 <h3 className="font-body-lg text-body-lg mb-2">Residential Construction</h3>
-<p className="font-label-sm text-label-sm text-on-primary-fixed-variant">Custom homes, renovations, and extensions designed for the way Filipino families live today.</p>
+<p className="font-label-sm text-label-sm text-white/70">Custom homes, renovations, and extensions designed for the way Filipino families live today.</p>
 </div>
-<div className="border-b border-on-primary-fixed-variant/30 pb-6">
+<div className="border-b border-white/20 pb-6">
 <h3 className="font-body-lg text-body-lg mb-2">Commercial Spaces</h3>
-<p className="font-label-sm text-label-sm text-on-primary-fixed-variant">Offices, retail, and small-scale commercial builds that balance function with lasting presence.</p>
+<p className="font-label-sm text-label-sm text-white/70">Offices, retail, and small-scale commercial builds that balance function with lasting presence.</p>
 </div>
 <div className="pb-6">
 <h3 className="font-body-lg text-body-lg mb-2">Interior Design</h3>
-<p className="font-label-sm text-label-sm text-on-primary-fixed-variant">Finish-out, material selection, and spatial detailing that turn a structure into a home.</p>
+<p className="font-label-sm text-label-sm text-white/70">Finish-out, material selection, and spatial detailing that turn a structure into a home.</p>
 </div>
 </div>
 </div>
