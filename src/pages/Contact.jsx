@@ -151,18 +151,18 @@ export default function Contact() {
 
                         <div className="pb-8 structural-line mb-8">
                             <p className="font-label-caps text-label-caps text-on-surface-variant mb-4 uppercase">Online</p>
-                            <Link className="flex items-center gap-3 font-body-md text-body-md text-primary hover:text-secondary transition-colors" to="/">
+                            <a className="flex items-center gap-3 font-body-md text-body-md text-primary hover:text-secondary transition-colors" href="https://www.facebook.com/RELBuildersDesign" target="_blank" rel="noopener noreferrer">
                                 <span className="material-symbols-outlined text-outline" data-icon="public">public</span>
                                 RE Lodronio Builders Inc.
-                            </Link>
+                            </a>
                         </div>
 
                         <div className="pb-8 structural-line">
                             <p className="font-label-caps text-label-caps text-on-surface-variant mb-4 uppercase">Visit Us</p>
-                            <Link className="flex items-center gap-3 font-body-md text-body-md text-primary hover:text-secondary transition-colors" to="/">
+                            <a className="flex items-center gap-3 font-body-md text-body-md text-primary hover:text-secondary transition-colors" href="https://maps.app.goo.gl/3DUzmKCFrcS7fTPs9" target="_blank" rel="noopener noreferrer">
                                 <span className="material-symbols-outlined text-outline" data-icon="location_on">location_on</span>
                                 Open in Google Maps
-                            </Link>
+                            </a>
                         </div>
                     </div>
                 </section>
