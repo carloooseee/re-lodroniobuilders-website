@@ -70,10 +70,10 @@ export default function Home() {
                       className="h-1 w-12 bg-on-primary/30 relative overflow-hidden rounded-full"
                     >
                       <div
-                        className="h-full bg-on-primary absolute top-0 left-0"
+                        key={isActive ? 'active' : 'inactive'}
+                        className={`h-full bg-on-primary absolute top-0 left-0 ${isActive ? 'animate-progress-bar' : ''}`}
                         style={{
-                          width: isPrevious ? '100%' : isActive ? '100%' : '0%',
-                          transition: isActive ? 'width 6000ms linear' : 'width 0ms linear',
+                          width: isPrevious ? '100%' : '0%',
                         }}
                       />
                     </div>
