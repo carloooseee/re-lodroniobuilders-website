@@ -1,8 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { db } from '../firebase';
 
 export default function Contact() {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [subject, setSubject] = useState('');
+    const [message, setMessage] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState(null);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        setSubmitStatus(null);
+
+        try {
+            await addDoc(collection(db, 'messages'), {
+                name,
+                email,
+                subject,
+                message,
+                status: 'new',
+                createdAt: serverTimestamp()
+            });
+            setSubmitStatus('success');
+            setName('');
+            setEmail('');
+            setSubject('');
+            setMessage('');
+        } catch (error) {
+            console.error('Error adding document: ', error);
+            setSubmitStatus('error');
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
     return (
         <>
             <Navbar />
@@ -46,25 +82,35 @@ export default function Contact() {
 
                     <div className="md:w-1/2 flex flex-col w-full">
                         <h2 className="font-headline-md text-headline-md text-primary mb-12">Send a message</h2>
-                        <form className="flex flex-col gap-8 w-full max-w-lg">
+                        <form onSubmit={handleSubmit} className="flex flex-col gap-8 w-full max-w-lg">
+                            {submitStatus === 'success' && (
+                                <div className="bg-[#4CAF50]/10 text-[#4CAF50] p-4 rounded-md font-body-md border border-[#4CAF50]/20">
+                                    Message sent successfully! We will get back to you soon.
+                                </div>
+                            )}
+                            {submitStatus === 'error' && (
+                                <div className="bg-[#F44336]/10 text-[#F44336] p-4 rounded-md font-body-md border border-[#F44336]/20">
+                                    Failed to send message. Please try again later.
+                                </div>
+                            )}
                             <div className="flex flex-col gap-2">
                                 <label className="font-body-md text-body-md text-primary" htmlFor="name">Name</label>
-                                <input className="w-full pb-2 text-on-surface-variant font-body-md border-b border-primary/35 focus:border-primary focus:outline-none bg-transparent" id="name" placeholder="Your name" required="" type="text" />
+                                <input value={name} onChange={(e) => setName(e.target.value)} className="w-full pb-2 text-on-surface-variant font-body-md border-b border-primary/35 focus:border-primary focus:outline-none bg-transparent" id="name" placeholder="Your name" required type="text" />
                             </div>
                             <div className="flex flex-col gap-2">
                                 <label className="font-body-md text-body-md text-primary" htmlFor="email">Email</label>
-                                <input className="w-full pb-2 text-on-surface-variant font-body-md border-b border-primary/35 focus:border-primary focus:outline-none bg-transparent" id="email" placeholder="Your@email.com" required="" type="email" />
+                                <input value={email} onChange={(e) => setEmail(e.target.value)} className="w-full pb-2 text-on-surface-variant font-body-md border-b border-primary/35 focus:border-primary focus:outline-none bg-transparent" id="email" placeholder="Your@email.com" required type="email" />
                             </div>
                             <div className="flex flex-col gap-2">
                                 <label className="font-body-md text-body-md text-primary" htmlFor="subject">Subject</label>
-                                <input className="w-full pb-2 text-on-surface-variant font-body-md border-b border-primary/35 focus:border-primary focus:outline-none bg-transparent" id="subject" placeholder="Subject" type="text" />
+                                <input value={subject} onChange={(e) => setSubject(e.target.value)} className="w-full pb-2 text-on-surface-variant font-body-md border-b border-primary/35 focus:border-primary focus:outline-none bg-transparent" id="subject" placeholder="Subject" type="text" />
                             </div>
                             <div className="flex flex-col gap-2 mb-4">
                                 <label className="font-body-md text-body-md text-primary" htmlFor="message">Message</label>
-                                <textarea className="w-full pb-2 text-on-surface-variant font-body-md resize-none border-b border-primary/35 focus:border-primary focus:outline-none bg-transparent" id="message" placeholder="Type your message here...." required="" rows="4"></textarea>
+                                <textarea value={message} onChange={(e) => setMessage(e.target.value)} className="w-full pb-2 text-on-surface-variant font-body-md resize-none border-b border-primary/35 focus:border-primary focus:outline-none bg-transparent" id="message" placeholder="Type your message here...." required rows="4"></textarea>
                             </div>
-                            <button className="bg-primary text-on-primary font-label-caps text-label-caps py-4 px-8 w-full hover:opacity-90 transition-opacity uppercase tracking-widest" type="submit">
-                                Send Message
+                            <button disabled={isSubmitting} className="bg-primary text-on-primary font-label-caps text-label-caps py-4 px-8 w-full hover:opacity-90 transition-opacity uppercase tracking-widest disabled:opacity-50" type="submit">
+                                {isSubmitting ? 'Sending...' : 'Send Message'}
                             </button>
                         </form>
                     </div>
