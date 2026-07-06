@@ -10,13 +10,13 @@ import { getStorage } from "firebase/storage";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID,
-  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyBzzURtHsOeWH8iM4Zgi5vZUKzcpXEji4k",
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "re-lodroniobuilders.firebaseapp.com",
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "re-lodroniobuilders",
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "re-lodroniobuilders.firebasestorage.app",
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "607098506969",
+  appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:607098506969:web:674a4651a26b04e8dc78c8",
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID || "G-9MRZD03S7R"
 };
 
 // Initialize Firebase
