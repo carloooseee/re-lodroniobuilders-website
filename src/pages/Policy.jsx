@@ -200,7 +200,7 @@ export default function Policy() {
             [ COMPANY AND POLICIES ]
           </p>
           <h1 className="font-display-lg text-display-lg-mobile md:text-display-lg tracking-tight mb-6">
-            Employees standards <span className="italic font-serif">and</span><br />policies
+            Employees standards <span className="italic font-serif">and</span> policies
           </h1>
           <p className="text-body-lg text-on-surface-variant leading-relaxed">
             These policies define the working relationship between R.E. Lodronio Builders Inc. and its employees. They are intended to promote fairness, safety, accountability, and professionalism across every project site.
