@@ -1,5 +1,5 @@
 import React from 'react';
-import placeholderImg from '../assets/placeholder1.jpg';
+import arPicture from '../assets/ARPicture.png';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 
@@ -42,7 +42,7 @@ export default function About() {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter items-start">
             <div className="md:col-span-5">
               <div className="relative w-full aspect-[4/5] bg-surface-variant overflow-hidden group">
-                <img alt="Ar. Roco E. Lodronio" className="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-105" data-alt="Black and white professional portrait of a male architect with glasses, light facial hair, wearing a dark blazer over a black shirt, looking directly at the camera with a subtle smile. High-end editorial lighting, crisp details, architectural studio setting implied. The image should convey experience, trust, and refined professionalism." src={placeholderImg} />
+                <img alt="Ar. Roco E. Lodronio" className="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-105" src={arPicture} />
               </div>
               <div className="flex justify-between items-center mt-4 font-label-caps text-label-caps uppercase text-on-surface-variant text-[10px]">
                 <span>LAS PINAS, PH</span>
