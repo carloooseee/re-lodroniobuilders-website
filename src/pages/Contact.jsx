@@ -107,7 +107,7 @@ export default function Contact() {
                             </div>
                             <div className="flex flex-col gap-2 mb-4">
                                 <label className="font-body-md text-body-md text-primary" htmlFor="message">Message</label>
-                                <textarea value={message} onChange={(e) => setMessage(e.target.value)} className="w-full pb-2 text-on-surface-variant font-body-md resize-none border-b border-primary/35 focus:border-primary focus:outline-none bg-transparent" id="message" placeholder="Type your message here...." required rows="4"></textarea>
+                                <textarea value={message} onChange={(e) => setMessage(e.target.value)} className="w-full pb-2 text-on-surface-variant font-body-md resize-none border-b border-primary/35 focus:border-primary focus:outline-none bg-transparent" id="message" placeholder="Type your message here...." required rows="1"></textarea>
                             </div>
                             <button disabled={isSubmitting} className="bg-primary text-on-primary font-label-caps text-label-caps py-4 px-8 w-full hover:opacity-90 transition-opacity uppercase tracking-widest disabled:opacity-50" type="submit">
                                 {isSubmitting ? 'Sending...' : 'Send Message'}

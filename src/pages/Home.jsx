@@ -67,7 +67,7 @@ export default function Home() {
         {/* Bottom Banner */}
         <div className="relative z-10 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop text-on-primary">
           <div className="flex items-end justify-between border-b border-on-primary/30 pb-4">
-            <h2 className="font-headline-md text-headline-md italic">Residence project</h2>
+            <h2 className="font-body-md text-body-md italic">Residence project</h2>
             <div className="flex items-center gap-4">
               <div className="flex gap-2">
                 {slides.map((_, idx) => {
