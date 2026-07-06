@@ -11,11 +11,21 @@ export default function Contact() {
     const [message, setMessage] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState(null);
+    const [ticketId, setTicketId] = useState('');
+
+    const generateTicketId = () => {
+        const now = new Date();
+        const datePart = `${String(now.getDate()).padStart(2, '0')}${String(now.getMonth() + 1).padStart(2, '0')}`;
+        const randomPart = Math.random().toString(36).toUpperCase().slice(2, 6);
+        return `TKT-${datePart}-${randomPart}`;
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
         setSubmitStatus(null);
+
+        const newTicketId = generateTicketId();
 
         try {
             await addDoc(collection(db, 'messages'), {
@@ -24,8 +34,10 @@ export default function Contact() {
                 subject,
                 message,
                 status: 'new',
+                ticketId: newTicketId,
                 createdAt: serverTimestamp()
             });
+            setTicketId(newTicketId);
             setSubmitStatus('success');
             setName('');
             setEmail('');
@@ -84,8 +96,13 @@ export default function Contact() {
                         <h2 className="font-headline-md text-headline-md text-primary mb-12">Send a message</h2>
                         <form onSubmit={handleSubmit} className="flex flex-col gap-8 w-full max-w-lg">
                             {submitStatus === 'success' && (
-                                <div className="bg-[#4CAF50]/10 text-[#4CAF50] p-4 rounded-md font-body-md border border-[#4CAF50]/20">
-                                    Message sent successfully! We will get back to you soon.
+                                <div className="flex flex-col gap-2 bg-[#4CAF50]/10 text-primary p-5 rounded-md border border-[#4CAF50]/20">
+                                    <p className="font-body-md text-body-md">Message sent successfully! We'll get back to you soon.</p>
+                                    <div className="flex items-center gap-3 mt-1">
+                                        <span className="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Your Ticket ID:</span>
+                                        <span className="font-mono font-bold text-sm tracking-widest text-[#4CAF50]">{ticketId}</span>
+                                    </div>
+                                    <p className="font-body-sm text-body-sm text-on-surface-variant text-[11px] mt-1">Please save this reference number for your records.</p>
                                 </div>
                             )}
                             {submitStatus === 'error' && (
