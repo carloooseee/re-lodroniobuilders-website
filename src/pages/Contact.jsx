@@ -37,6 +37,23 @@ export default function Contact() {
                 ticketId: newTicketId,
                 createdAt: serverTimestamp()
             });
+
+            // Trigger Email Auto-Replier API
+            try {
+                await fetch('/api/submit-form', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name,
+                        email,
+                        subject,
+                        ticketId: newTicketId
+                    })
+                });
+            } catch (emailErr) {
+                console.warn('Auto-reply email could not be sent:', emailErr);
+            }
+
             setTicketId(newTicketId);
             setSubmitStatus('success');
             setName('');
