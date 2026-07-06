@@ -100,10 +100,15 @@ export default function Home() {
         <section className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pt-8">
 
           <div className="flex flex-col-reverse md:flex-row justify-between items-start md:items-end mb-16 border-b border-outline-variant/30 pb-4 gap-8 md:gap-0">
-            <Link className="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2 group uppercase tracking-widest" to="/">
+            <a
+              className="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2 group uppercase tracking-widest"
+              href="https://www.canva.com/design/DAHCMP8YuQ4/ns4gpTaWhngEH-_kbo6pmg/view?utm_content=DAHCMP8YuQ4&utm_campaign=designshare&utm_medium=link&utm_source=viewer"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Click to view all Project Interiors
               <span className="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_right_alt</span>
-            </Link>
+            </a>
             <h2 className="font-display-lg-mobile md:font-headline-lg text-display-lg-mobile md:text-headline-lg text-primary text-right w-full md:w-auto">Interiors Designs</h2>
           </div>
 
@@ -140,10 +145,15 @@ export default function Home() {
 
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 border-b border-outline-variant/30 pb-4 gap-8 md:gap-0">
               <h2 className="font-display-lg-mobile md:font-headline-lg text-display-lg-mobile md:text-headline-lg text-on-primary">Exteriors Designs</h2>
-              <Link className="font-label-caps text-label-caps hover:text-primary transition-colors flex items-center gap-2 group uppercase tracking-widest text-on-primary/70" to="/">
+              <a
+                className="font-label-caps text-label-caps hover:text-primary transition-colors flex items-center gap-2 group uppercase tracking-widest text-on-primary/70"
+                href="https://www.canva.com/design/DAHB8G8LzEw/jDs9cAsiaYO-PZRkk2z2Bw/view?utm_content=DAHB8G8LzEw&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h8330579d52"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Click to view all Project Exteriors
                 <span className="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_right_alt</span>
-              </Link>
+              </a>
             </div>
 
             <div className="mb-8">
