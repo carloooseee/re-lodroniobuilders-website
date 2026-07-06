@@ -9,18 +9,64 @@ import interiorImg3 from '../assets/Interior/Interior3.png';
 import exteriorImg1 from '../assets/Exterior/Exterior1.png';
 import exteriorImg2 from '../assets/Exterior/Exterior2.png';
 import exteriorImg3 from '../assets/Exterior/Exterior3.png';
-import placeholderImg from '../assets/placeholder.jpg';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import { db } from '../firebase';
+import { doc, getDoc } from 'firebase/firestore';
 
 export default function Home() {
   const [activeSlide, setActiveSlide] = useState(0);
+  const [siteImages, setSiteImages] = useState({});
+  const [brokenImages, setBrokenImages] = useState({});
+
+  // Fetch dynamic image URLs set by admin
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const snap = await getDoc(doc(db, 'siteSettings', 'homeImages'));
+        if (snap.exists()) setSiteImages(snap.data());
+      } catch (err) {
+        console.warn('Could not load site images from Firestore, using defaults.', err);
+      }
+    };
+    fetchImages();
+  }, []);
+
+  // Validate image loading, fallback if not working
+  useEffect(() => {
+    Object.entries(siteImages).forEach(([key, url]) => {
+      if (!url) return;
+      const tester = new Image();
+      tester.src = url;
+      tester.onerror = () => {
+        setBrokenImages(prev => ({ ...prev, [key]: true }));
+      };
+      tester.onload = () => {
+        setBrokenImages(prev => {
+          if (prev[key]) {
+            const next = { ...prev };
+            delete next[key];
+            return next;
+          }
+          return prev;
+        });
+      };
+    });
+  }, [siteImages]);
+
+  // Helper: return Firestore URL if set and valid, else fall back to local import
+  const img = (key, fallback) => {
+    if (siteImages[key] && !brokenImages[key]) {
+      return siteImages[key];
+    }
+    return fallback;
+  };
 
   const slides = [
-    houseImg1,
-    houseImg2,
-    houseImg3,
-    houseImg4,
+    img('hero_0', houseImg1),
+    img('hero_1', houseImg2),
+    img('hero_2', houseImg3),
+    img('hero_3', houseImg4),
   ];
 
   useEffect(() => {
@@ -121,18 +167,18 @@ export default function Home() {
                 </p>
               </div>
               <div className="md:col-span-8">
-                <img className="w-full h-auto object-cover aspect-video bg-surface-container" data-alt="A warmly lit, modern children's bedroom interior. The room features a custom-built, multi-level wooden bed structure with integrated shelving and a cozy reading nook below. A father and son are sitting on the lower level reading a book. The color palette is natural wood, soft whites, and muted blues and greens. High-end interior design photography, emphasizing functional and playful design." src={interiorImg1} />
+                <img className="w-full h-auto object-cover aspect-video bg-surface-container" data-alt="A warmly lit, modern children's bedroom interior. The room features a custom-built, multi-level wooden bed structure with integrated shelving and a cozy reading nook below. A father and son are sitting on the lower level reading a book. The color palette is natural wood, soft whites, and muted blues and greens. High-end interior design photography, emphasizing functional and playful design." src={img('interior_0', interiorImg1)} />
               </div>
             </div>
 
             <div className="md:col-span-6 flex flex-col gap-6 mt-16 md:mt-0">
-              <img className="w-full h-auto object-cover aspect-[4/3] bg-surface-container" data-alt="A sophisticated dining room interior showcasing a study in texture. A large, dark vertical wood paneled wall serves as a dramatic backdrop. A minimalist wooden dining table with elegant, curved wooden chairs sits in the center. A sleek, linear black pendant light hangs above. Soft, flowing beige drapery frames a large window, softening the stark lines. The lighting is moody and elegant." src={interiorImg2} />
+              <img className="w-full h-auto object-cover aspect-[4/3] bg-surface-container" data-alt="A sophisticated dining room interior showcasing a study in texture. A large, dark vertical wood paneled wall serves as a dramatic backdrop. A minimalist wooden dining table with elegant, curved wooden chairs sits in the center. A sleek, linear black pendant light hangs above. Soft, flowing beige drapery frames a large window, softening the stark lines. The lighting is moody and elegant." src={img('interior_1', interiorImg2)} />
               <p className="font-body-md text-body-md text-on-surface-variant">
                 A study in texture. Vertical wood paneling creates a dramatic backdrop for an intimate dining experience, balanced by soft, flowing drapery.
               </p>
             </div>
             <div className="md:col-span-6 flex flex-col gap-6 mt-16 md:mt-0">
-              <img className="w-full h-auto object-cover aspect-[3/4] bg-surface-container" data-alt="A cozy yet sophisticated living room corner. A large, floor-to-ceiling custom wooden bookshelf filled with books and curated objects dominates the right side. A comfortable, olive green armchair sits in the foreground with soft, neutral textured pillows. A modern black floor lamp arches over the chair. The walls are a soft, muted sage green. The atmosphere is quiet, intellectual, and inviting." src={interiorImg3} />
+              <img className="w-full h-auto object-cover aspect-[3/4] bg-surface-container" data-alt="A cozy yet sophisticated living room corner. A large, floor-to-ceiling custom wooden bookshelf filled with books and curated objects dominates the right side. A comfortable, olive green armchair sits in the foreground with soft, neutral textured pillows. A modern black floor lamp arches over the chair. The walls are a soft, muted sage green. The atmosphere is quiet, intellectual, and inviting." src={img('interior_2', interiorImg3)} />
               <p className="font-body-md text-body-md text-on-surface-variant text-right md:text-left">
                 Floor-to-ceiling shelving meets soft, neutral textiles to create a sophisticated yet cozy corner dedicated to literature and relaxation.
               </p>
@@ -157,7 +203,7 @@ export default function Home() {
             </div>
 
             <div className="mb-8">
-              <img className="w-full h-auto object-cover aspect-video md:aspect-[21/9] bg-surface-container" data-alt="A striking modern exterior of a multi-story home during daylight. The facade features bold, geometric shapes with a mix of raw, off-form concrete and warm, vertical wooden slats. Large rectangular windows puncture the concrete walls. Two luxury SUVs are parked in the open carport on the ground level. Lush green trees frame the upper portion of the house. The aesthetic is contemporary, structural, and luxurious." src={exteriorImg2} />
+              <img className="w-full h-auto object-cover aspect-video md:aspect-[21/9] bg-surface-container" data-alt="A striking modern exterior of a multi-story home during daylight. The facade features bold, geometric shapes with a mix of raw, off-form concrete and warm, vertical wooden slats. Large rectangular windows puncture the concrete walls. Two luxury SUVs are parked in the open carport on the ground level. Lush green trees frame the upper portion of the house. The aesthetic is contemporary, structural, and luxurious." src={img('exterior_1', exteriorImg2)} />
               <p className="font-body-lg text-body-lg mt-6 max-w-3xl text-on-primary/70">
                 Bold geometries. The raw texture of off-form concrete finds balance against the rhythmic warmth of vertical wooden slats.
               </p>
@@ -165,13 +211,13 @@ export default function Home() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-gutter mt-8">
               <div className="flex flex-col gap-6">
-                <img className="w-full h-auto object-cover aspect-[4/3] bg-surface-container" data-alt="A three-story modern urban home exterior. The design is a study in contrast, featuring rich, dark textured stone on the lower levels and smooth, light plaster on the upper levels. Organic greenery cascades from built-in planters on the balconies, softening the hard architectural lines. Two cars are parked in the driveway behind a sleek metal gate. The lighting suggests early evening." src={exteriorImg1} />
+                <img className="w-full h-auto object-cover aspect-[4/3] bg-surface-container" data-alt="A three-story modern urban home exterior. The design is a study in contrast, featuring rich, dark textured stone on the lower levels and smooth, light plaster on the upper levels. Organic greenery cascades from built-in planters on the balconies, softening the hard architectural lines. Two cars are parked in the driveway behind a sleek metal gate. The lighting suggests early evening." src={img('exterior_0', exteriorImg1)} />
                 <p className="font-body-md text-body-md text-on-primary/70">
                   A study in contrast. Rich stone textures and organic greenery layer together to create a dynamic, multi-tiered urban facade.
                 </p>
               </div>
               <div className="flex flex-col gap-6">
-                <img className="w-full h-auto object-cover aspect-[4/3] bg-surface-container" data-alt="A sleek, expansive modern home exterior featuring dramatic structural cantilevers. The house has a wide, horizontal profile with extensive use of glass, steel, and light gray stone cladding. The cantilevered rooflines provide deep overhangs, blurring the lines between indoor and outdoor living spaces. Three luxury cars are parked in the spacious driveway. The scene is bright and airy, emphasizing seamless design." src={exteriorImg3} />
+                <img className="w-full h-auto object-cover aspect-[4/3] bg-surface-container" data-alt="A sleek, expansive modern home exterior featuring dramatic structural cantilevers. The house has a wide, horizontal profile with extensive use of glass, steel, and light gray stone cladding. The cantilevered rooflines provide deep overhangs, blurring the lines between indoor and outdoor living spaces. Three luxury cars are parked in the spacious driveway. The scene is bright and airy, emphasizing seamless design." src={img('exterior_2', exteriorImg3)} />
                 <p className="font-body-md text-body-md text-right md:text-left text-on-primary/70">
                   Sleek architectural lines and expansive structural cantilevers define a residence built for seamless indoor-outdoor cohesion.
                 </p>
