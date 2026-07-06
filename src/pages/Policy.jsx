@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../firebase';
 
 const accordionData = [
   {
@@ -185,10 +187,27 @@ const accordionData = [
 
 export default function Policy() {
   const [openId, setOpenId] = useState(null);
+  const [content, setContent] = useState(null);
+
+  useEffect(() => {
+    const fetchContent = async () => {
+      try {
+        const docSnap = await getDoc(doc(db, 'siteSettings', 'policyContent'));
+        if (docSnap.exists()) {
+          setContent(docSnap.data());
+        }
+      } catch (err) {
+        console.error("Error fetching policy content:", err);
+      }
+    };
+    fetchContent();
+  }, []);
 
   const toggleAccordion = (id) => {
     setOpenId(openId === id ? null : id);
   };
+
+  const displayAccordionData = (content?.accordionData?.length > 0) ? content.accordionData : accordionData;
 
   return (
     <div className="min-h-screen bg-background text-on-background font-body-md">
@@ -203,7 +222,7 @@ export default function Policy() {
             Employees standards <span className="italic font-serif">and</span> policies
           </h1>
           <p className="text-body-lg text-on-surface-variant leading-relaxed">
-            These policies define the working relationship between R.E. Lodronio Builders Inc. and its employees. They are intended to promote fairness, safety, accountability, and professionalism across every project site.
+            {content?.heroDesc || "These policies define the working relationship between R.E. Lodronio Builders Inc. and its employees. They are intended to promote fairness, safety, accountability, and professionalism across every project site."}
           </p>
         </div>
       </section>
@@ -214,12 +233,12 @@ export default function Policy() {
           <div className="max-w-3xl mb-12">
             <h2 className="font-headline-md text-headline-md mb-4">Policy manual</h2>
             <p className="text-on-surface-variant">
-              Select a section below to read the full policy. The manual covers employment terms, conduct, attendance, compensation, grievance procedures, and separation.
+              {content?.manualDesc || "Select a section below to read the full policy. The manual covers employment terms, conduct, attendance, compensation, grievance procedures, and separation."}
             </p>
           </div>
 
           <div className="max-w-4xl mx-auto border-t border-outline-variant/30">
-            {accordionData.map((item) => (
+            {displayAccordionData.map((item) => (
               <div key={item.id} className="border-b border-outline-variant/30">
                 <button
                   onClick={() => toggleAccordion(item.id)}
@@ -239,7 +258,11 @@ export default function Policy() {
                   className={`overflow-hidden transition-all duration-300 ${openId === item.id ? 'max-h-[2000px] opacity-100 mb-6' : 'max-h-0 opacity-0'}`}
                 >
                   <div className="pl-18 pr-4">
-                    {item.content}
+                    {typeof item.content === 'string' ? (
+                      <div className="space-y-4 text-on-surface-variant leading-relaxed whitespace-pre-wrap" dangerouslySetInnerHTML={{ __html: item.content }} />
+                    ) : (
+                      item.content
+                    )}
                   </div>
                 </div>
               </div>

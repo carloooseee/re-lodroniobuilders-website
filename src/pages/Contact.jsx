@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { collection, addDoc, serverTimestamp, doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 
 export default function Contact() {
@@ -12,6 +12,21 @@ export default function Contact() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState(null);
     const [ticketId, setTicketId] = useState('');
+    const [content, setContent] = useState(null);
+
+    useEffect(() => {
+        const fetchContent = async () => {
+            try {
+                const docSnap = await getDoc(doc(db, 'siteSettings', 'contactContent'));
+                if (docSnap.exists()) {
+                    setContent(docSnap.data());
+                }
+            } catch (err) {
+                console.error("Error fetching contact content:", err);
+            }
+        };
+        fetchContent();
+    }, []);
 
     const generateTicketId = () => {
         const now = new Date();
@@ -82,27 +97,27 @@ export default function Contact() {
                             <span className="italic font-light">conversation.</span>
                         </h1>
                         <p className="font-body-md text-body-md text-on-surface-variant max-w-md mt-4">
-                            Reach out directly for estimates, site visits, or to discuss the home you want to build.
+                            {content?.introDesc || "Reach out directly for estimates, site visits, or to discuss the home you want to build."}
                         </p>
                     </div>
                     <div className="md:w-5/12 flex flex-col w-full">
 
                         <div className="pb-8 structural-line mb-8">
                             <p className="font-label-caps text-label-caps text-on-surface-variant mb-4 uppercase">Company</p>
-                            <h2 className="font-headline-md text-headline-md text-primary mb-1">RE Lodronio Builders Inc.</h2>
-                            <p className="font-body-md text-body-md text-on-surface-variant">Formerly REL Builders and Design</p>
+                            <h2 className="font-headline-md text-headline-md text-primary mb-1">{content?.companyName || "RE Lodronio Builders Inc."}</h2>
+                            <p className="font-body-md text-body-md text-on-surface-variant">{content?.companySubtitle || "Formerly REL Builders and Design"}</p>
                         </div>
 
                         <div className="pb-8 structural-line mb-8">
                             <p className="font-label-caps text-label-caps text-on-surface-variant mb-4 uppercase">Contact Person</p>
-                            <p className="font-body-md text-body-md text-primary">Ar. Roco E. Lodronio</p>
-                            <p className="font-body-md text-body-md text-on-surface-variant">Architect / Contractor</p>
+                            <p className="font-body-md text-body-md text-primary">{content?.contactPersonName || "Ar. Roco E. Lodronio"}</p>
+                            <p className="font-body-md text-body-md text-on-surface-variant">{content?.contactPersonRole || "Architect / Contractor"}</p>
                         </div>
 
                         <div className="pb-8 structural-line">
                             <p className="font-label-caps text-label-caps text-on-surface-variant mb-4 uppercase">Office Address</p>
-                            <p className="font-body-md text-body-md text-primary">No. 2 M. Santos Avenue, Santos Village Phase 3</p>
-                            <p className="font-body-md text-body-md text-primary">Barangay Zapote, Las Piñas City, Philippines</p>
+                            <p className="font-body-md text-body-md text-primary">{content?.addressLine1 || "No. 2 M. Santos Avenue, Santos Village Phase 3"}</p>
+                            <p className="font-body-md text-body-md text-primary">{content?.addressLine2 || "Barangay Zapote, Las Piñas City, Philippines"}</p>
                         </div>
                     </div>
                 </section>
@@ -154,32 +169,50 @@ export default function Contact() {
                         <div className="pb-8 structural-line mb-8">
                             <p className="font-label-caps text-label-caps text-on-surface-variant mb-4 uppercase">Email</p>
                             <div className="flex flex-col gap-4">
-                                <a className="flex items-center gap-3 font-body-md text-body-md text-primary hover:text-secondary transition-colors" href="mailto:rocolodronio@hotmail.com">
-                                    <span className="material-symbols-outlined text-outline" data-icon="mail">mail</span>
-                                    rocolodronio@hotmail.com
-                                </a>
-                                <a className="flex items-center gap-3 font-body-md text-body-md text-primary hover:text-secondary transition-colors" href="mailto:relbuildersanddesign@gmail.com">
-                                    <span className="material-symbols-outlined text-outline" data-icon="mail">mail</span>
-                                    relbuildersanddesign@gmail.com
-                                </a>
+                                {content?.emails ? content.emails.split(',').map(e => e.trim()).filter(Boolean).map(email => (
+                                    <a key={email} className="flex items-center gap-3 font-body-md text-body-md text-primary hover:text-secondary transition-colors" href={`mailto:${email}`}>
+                                        <span className="material-symbols-outlined text-outline" data-icon="mail">mail</span>
+                                        {email}
+                                    </a>
+                                )) : (
+                                    <>
+                                        <a className="flex items-center gap-3 font-body-md text-body-md text-primary hover:text-secondary transition-colors" href="mailto:rocolodronio@hotmail.com">
+                                            <span className="material-symbols-outlined text-outline" data-icon="mail">mail</span>
+                                            rocolodronio@hotmail.com
+                                        </a>
+                                        <a className="flex items-center gap-3 font-body-md text-body-md text-primary hover:text-secondary transition-colors" href="mailto:relbuildersanddesign@gmail.com">
+                                            <span className="material-symbols-outlined text-outline" data-icon="mail">mail</span>
+                                            relbuildersanddesign@gmail.com
+                                        </a>
+                                    </>
+                                )}
                             </div>
                         </div>
 
                         <div className="pb-8 structural-line mb-8">
                             <p className="font-label-caps text-label-caps text-on-surface-variant mb-4 uppercase">Phone</p>
                             <div className="flex flex-col gap-4">
-                                <a className="flex items-center gap-3 font-body-md text-body-md text-primary hover:text-secondary transition-colors" href="tel:872-4338">
-                                    <span className="material-symbols-outlined text-outline" data-icon="call">call</span>
-                                    872-4338
-                                </a>
-                                <a className="flex items-center gap-3 font-body-md text-body-md text-primary hover:text-secondary transition-colors" href="tel:0995-975-7401">
-                                    <span className="material-symbols-outlined text-outline" data-icon="call">call</span>
-                                    0995-975-7401
-                                </a>
-                                <a className="flex items-center gap-3 font-body-md text-body-md text-primary hover:text-secondary transition-colors" href="tel:0949-892-5217">
-                                    <span className="material-symbols-outlined text-outline" data-icon="call">call</span>
-                                    0949-892-5217
-                                </a>
+                                {content?.phones ? content.phones.split(',').map(p => p.trim()).filter(Boolean).map(phone => (
+                                    <a key={phone} className="flex items-center gap-3 font-body-md text-body-md text-primary hover:text-secondary transition-colors" href={`tel:${phone}`}>
+                                        <span className="material-symbols-outlined text-outline" data-icon="call">call</span>
+                                        {phone}
+                                    </a>
+                                )) : (
+                                    <>
+                                        <a className="flex items-center gap-3 font-body-md text-body-md text-primary hover:text-secondary transition-colors" href="tel:872-4338">
+                                            <span className="material-symbols-outlined text-outline" data-icon="call">call</span>
+                                            872-4338
+                                        </a>
+                                        <a className="flex items-center gap-3 font-body-md text-body-md text-primary hover:text-secondary transition-colors" href="tel:0995-975-7401">
+                                            <span className="material-symbols-outlined text-outline" data-icon="call">call</span>
+                                            0995-975-7401
+                                        </a>
+                                        <a className="flex items-center gap-3 font-body-md text-body-md text-primary hover:text-secondary transition-colors" href="tel:0949-892-5217">
+                                            <span className="material-symbols-outlined text-outline" data-icon="call">call</span>
+                                            0949-892-5217
+                                        </a>
+                                    </>
+                                )}
                             </div>
                         </div>
 
