@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase';
+import DOMPurify from 'dompurify';
 
 const accordionData = [
   {
@@ -259,7 +260,10 @@ export default function Policy() {
                 >
                   <div className="pl-18 pr-4">
                     {typeof item.content === 'string' ? (
-                      <div className="space-y-4 text-on-surface-variant leading-relaxed whitespace-pre-wrap" dangerouslySetInnerHTML={{ __html: item.content }} />
+                      <div
+                        className="space-y-4 text-on-surface-variant leading-relaxed whitespace-pre-wrap"
+                        dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(item.content) }}
+                      />
                     ) : (
                       item.content
                     )}

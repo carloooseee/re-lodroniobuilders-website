@@ -100,12 +100,12 @@ export default function Home() {
       <header className="relative w-full min-h-screen pt-28 pb-10 flex flex-col justify-between overflow-hidden">
 
         <div className="absolute inset-0 z-0 after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-r after:from-black/60 after:to-transparent overflow-hidden">
-          {slides.map((img, idx) => (
+          {slides.map((slideUrl, idx) => (
             <div
               key={idx}
               className="absolute inset-0 bg-cover bg-center"
               style={{
-                backgroundImage: `url(${img})`,
+                backgroundImage: `url(${slideUrl})`,
                 opacity: idx === activeSlide ? 1 : 0,
                 transform: idx === activeSlide ? 'scale(1.08)' : 'scale(1)',
                 transition: 'opacity 1.5s ease-in-out, transform 6.0s cubic-bezier(0.25, 1, 0.5, 1)',

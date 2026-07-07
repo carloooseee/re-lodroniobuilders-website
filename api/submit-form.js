@@ -33,13 +33,25 @@ function escapeHtml(str) {
         .replace(/'/g, '&#039;');
 }
 
+// Allowed origin — only your production domain may call this API
+const ALLOWED_ORIGIN = process.env.ALLOWED_ORIGIN || 'https://relodroniobuilders.com';
+
 export default async function handler(req, res) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    const origin = req.headers['origin'] || '';
+    const allowedOrigin = origin === ALLOWED_ORIGIN ? ALLOWED_ORIGIN : '';
+
+    res.setHeader('Access-Control-Allow-Origin', allowedOrigin || ALLOWED_ORIGIN);
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Vary', 'Origin');
 
     if (req.method === 'OPTIONS') return res.status(200).end();
     if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
+
+    // Block requests from disallowed origins
+    if (origin && origin !== ALLOWED_ORIGIN) {
+        return res.status(403).json({ error: 'Forbidden' });
+    }
 
     // Rate limiting by IP
     const ip = req.headers['x-forwarded-for']?.split(',')[0]?.trim() || req.socket?.remoteAddress || 'unknown';

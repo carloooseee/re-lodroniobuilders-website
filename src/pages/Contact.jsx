@@ -13,6 +13,8 @@ export default function Contact() {
     const [submitStatus, setSubmitStatus] = useState(null);
     const [ticketId, setTicketId] = useState('');
     const [content, setContent] = useState(null);
+    // Honeypot field — must stay empty; bots fill it, humans don't see it
+    const [honeypot, setHoneypot] = useState('');
 
     useEffect(() => {
         const fetchContent = async () => {
@@ -37,6 +39,13 @@ export default function Contact() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        // Honeypot check — silently reject bots that filled the hidden field
+        if (honeypot) {
+            setSubmitStatus('success'); // fake success so bots don't retry
+            return;
+        }
+
         setIsSubmitting(true);
         setSubmitStatus(null);
 
@@ -150,9 +159,14 @@ export default function Contact() {
                                 <label className="font-body-md text-body-md text-primary" htmlFor="email">Email</label>
                                 <input value={email} onChange={(e) => setEmail(e.target.value)} className="w-full pb-2 text-on-surface-variant font-body-md border-b border-primary/35 focus:border-primary focus:outline-none bg-transparent" id="email" placeholder="Your@email.com" required type="email" />
                             </div>
+                            {/* Honeypot — hidden from real users, traps bots */}
+                            <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', opacity: 0, pointerEvents: 'none' }} tabIndex={-1}>
+                                <label htmlFor="website">Leave this field empty</label>
+                                <input id="website" name="website" type="text" value={honeypot} onChange={(e) => setHoneypot(e.target.value)} autoComplete="off" tabIndex={-1} />
+                            </div>
                             <div className="flex flex-col gap-2">
                                 <label className="font-body-md text-body-md text-primary" htmlFor="subject">Subject</label>
-                                <input value={subject} onChange={(e) => setSubject(e.target.value)} className="w-full pb-2 text-on-surface-variant font-body-md border-b border-primary/35 focus:border-primary focus:outline-none bg-transparent" id="subject" placeholder="Subject" type="text" />
+                                <input value={subject} onChange={(e) => setSubject(e.target.value)} className="w-full pb-2 text-on-surface-variant font-body-md border-b border-primary/35 focus:border-primary focus:outline-none bg-transparent" id="subject" placeholder="Subject" required type="text" />
                             </div>
                             <div className="flex flex-col gap-2 mb-4">
                                 <label className="font-body-md text-body-md text-primary" htmlFor="message">Message</label>
