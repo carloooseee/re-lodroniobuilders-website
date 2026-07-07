@@ -19,17 +19,34 @@ export default function Home() {
   const [siteImages, setSiteImages] = useState({});
   const [brokenImages, setBrokenImages] = useState({});
 
-  // Fetch dynamic image URLs set by admin
+  const [homeLinks, setHomeLinks] = useState({
+    interiorLink: 'https://www.canva.com/design/DAHCMP8YuQ4/ns4gpTaWhngEH-_kbo6pmg/view?utm_content=DAHCMP8YuQ4&utm_campaign=designshare&utm_medium=link&utm_source=viewer',
+    exteriorLink: 'https://www.canva.com/design/DAHB8G8LzEw/jDs9cAsiaYO-PZRkk2z2Bw/view?utm_content=DAHB8G8LzEw&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h8330579d52'
+  });
+
+  // Fetch dynamic image URLs and links set by admin
   useEffect(() => {
-    const fetchImages = async () => {
+    const fetchImagesAndLinks = async () => {
       try {
         const snap = await getDoc(doc(db, 'siteSettings', 'homeImages'));
         if (snap.exists()) setSiteImages(snap.data());
       } catch (err) {
         console.warn('Could not load site images from Firestore, using defaults.', err);
       }
+      try {
+        const linkSnap = await getDoc(doc(db, 'siteSettings', 'homeLinks'));
+        if (linkSnap.exists()) {
+          const data = linkSnap.data();
+          setHomeLinks(prev => ({
+            interiorLink: data.interiorLink || prev.interiorLink,
+            exteriorLink: data.exteriorLink || prev.exteriorLink
+          }));
+        }
+      } catch (err) {
+        console.warn('Could not load site links from Firestore, using defaults.', err);
+      }
     };
-    fetchImages();
+    fetchImagesAndLinks();
   }, []);
 
   // Validate image loading, fallback if not working
@@ -148,7 +165,7 @@ export default function Home() {
           <div className="flex flex-col-reverse md:flex-row justify-between items-start md:items-end mb-16 border-b border-outline-variant/30 pb-4 gap-8 md:gap-0">
             <a
               className="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2 group uppercase tracking-widest"
-              href="https://www.canva.com/design/DAHCMP8YuQ4/ns4gpTaWhngEH-_kbo6pmg/view?utm_content=DAHCMP8YuQ4&utm_campaign=designshare&utm_medium=link&utm_source=viewer"
+              href={homeLinks.interiorLink}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -193,7 +210,7 @@ export default function Home() {
               <h2 className="font-display-lg-mobile md:font-headline-lg text-display-lg-mobile md:text-headline-lg text-on-primary">Exteriors Designs</h2>
               <a
                 className="font-label-caps text-label-caps hover:text-primary transition-colors flex items-center gap-2 group uppercase tracking-widest text-on-primary/70"
-                href="https://www.canva.com/design/DAHB8G8LzEw/jDs9cAsiaYO-PZRkk2z2Bw/view?utm_content=DAHB8G8LzEw&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h8330579d52"
+                href={homeLinks.exteriorLink}
                 target="_blank"
                 rel="noopener noreferrer"
               >
