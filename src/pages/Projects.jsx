@@ -5,8 +5,8 @@ import ImageCollage from '../components/ImageCollage';
 import Footer from '../components/Footer';
 
 // Dynamically import images from the new assets folders
-const residentialImports = import.meta.glob('../assets/residential/*.*', { eager: true, import: 'default' });
-const commercialImports = import.meta.glob('../assets/commercial/*.*', { eager: true, import: 'default' });
+const residentialImports = import.meta.glob('../assets/Residential/*.*', { eager: true, import: 'default' });
+const commercialImports = import.meta.glob('../assets/Commercial/*.*', { eager: true, import: 'default' });
 
 console.log('residentialImports:', residentialImports);
 console.log('commercialImports:', commercialImports);
