@@ -7,6 +7,7 @@ import { db } from '../firebase';
 export default function Contact() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
     const [subject, setSubject] = useState('');
     const [message, setMessage] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -55,6 +56,7 @@ export default function Contact() {
             await addDoc(collection(db, 'messages'), {
                 name,
                 email,
+                phone,
                 subject,
                 message,
                 status: 'new',
@@ -82,6 +84,7 @@ export default function Contact() {
             setSubmitStatus('success');
             setName('');
             setEmail('');
+            setPhone('');
             setSubject('');
             setMessage('');
         } catch (error) {
@@ -158,6 +161,10 @@ export default function Contact() {
                             <div className="flex flex-col gap-2">
                                 <label className="font-body-md text-body-md text-primary" htmlFor="email">Email</label>
                                 <input value={email} onChange={(e) => setEmail(e.target.value)} className="w-full pb-2 text-on-surface-variant font-body-md border-b border-primary/35 focus:border-primary focus:outline-none bg-transparent" id="email" placeholder="Your@email.com" required type="email" />
+                            </div>
+                            <div className="flex flex-col gap-2">
+                                <label className="font-body-md text-body-md text-primary" htmlFor="phone">Contact number</label>
+                                <input value={phone} onChange={(e) => setPhone(e.target.value)} className="w-full pb-2 text-on-surface-variant font-body-md border-b border-primary/35 focus:border-primary focus:outline-none bg-transparent" id="phone" placeholder="Your contact number" required type="tel" />
                             </div>
                             {/* Honeypot — hidden from real users, traps bots */}
                             <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', opacity: 0, pointerEvents: 'none' }} tabIndex={-1}>
