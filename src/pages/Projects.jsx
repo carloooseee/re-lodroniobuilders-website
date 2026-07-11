@@ -8,6 +8,9 @@ import Footer from '../components/Footer';
 const residentialImports = import.meta.glob('../assets/residential/*.*', { eager: true, import: 'default' });
 const commercialImports = import.meta.glob('../assets/commercial/*.*', { eager: true, import: 'default' });
 
+console.log('residentialImports:', residentialImports);
+console.log('commercialImports:', commercialImports);
+
 const processImages = (importsGlob, category) => {
   return Object.values(importsGlob).map((imgUrl, index) => ({
     id: `${category}-${index + 1}`,
@@ -27,6 +30,8 @@ const PROJECT_DATA = [
   ...processImages(residentialImports, 'residential'),
   ...processImages(commercialImports, 'commercial')
 ];
+
+console.log('PROJECT_DATA:', PROJECT_DATA);
 
 export default function Projects() {
   const { category } = useParams();

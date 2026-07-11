@@ -66,7 +66,10 @@ const ImageCollage = ({ projects }) => {
 
   // Initial load combining and weaving images and text blocks
   useEffect(() => {
-    setShuffledItems(weaveGalleryItems(projects));
+    console.log("ImageCollage received projects:", projects);
+    const woven = weaveGalleryItems(projects);
+    console.log("ImageCollage generated woven items:", woven);
+    setShuffledItems(woven);
   }, [projects]);
 
   const handleShuffle = () => {
