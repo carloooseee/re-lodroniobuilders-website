@@ -56,14 +56,14 @@
   --spacing-unit: 8px;
   --spacing-margin-desktop: 64px;
 
-  --font-headline-lg: "Work Sans", sans-serif;
+  --font-headline-lg: "Cormorant Garamond", serif;
   --font-label-caps: "Work Sans", sans-serif;
   --font-body-md: "Work Sans", sans-serif;
-  --font-display-lg: "Work Sans", sans-serif;
-  --font-display-lg-mobile: "Work Sans", sans-serif;
+  --font-display-lg: "Cormorant Garamond", serif;
+  --font-display-lg-mobile: "Cormorant Garamond", serif;
   --font-body-lg: "Work Sans", sans-serif;
-  --font-headline-md: "Work Sans", sans-serif;
-  --font-headline-sm: "Work Sans", sans-serif;
+  --font-headline-md: "Cormorant Garamond", serif;
+  --font-headline-sm: "Cormorant Garamond", serif;
   --font-label-sm: "Work Sans", sans-serif;
 
   /* Typography utilities */

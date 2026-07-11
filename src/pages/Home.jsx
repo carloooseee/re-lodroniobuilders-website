@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Footer from '../components/Footer';
 import houseImg1 from '../assets/houseImage/HouseImage1.png';
 import houseImg2 from '../assets/houseImage/HouseImage2.png';
 import houseImg3 from '../assets/houseImage/HouseImage3.png';
@@ -160,6 +161,68 @@ export default function Home() {
 
       <main className="bg-surface relative z-20 pb-0">
 
+        {/* Brief About Section */}
+        <section className="w-full bg-surface-container-low py-8 md:py-12 border-b border-outline-variant/20">
+          <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-12 gap-gutter">
+            <div className="md:col-span-5 flex flex-col items-start gap-4">
+              <span className="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">
+                ( Who We Are )
+              </span>
+              <h2 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary leading-tight">
+                Appropriate <br />and <br />
+                <span className="italic font-light">innovative.</span>
+              </h2>
+              <Link
+                to="/about"
+                className="mt-6 flex items-center gap-2 px-8 py-4 bg-primary text-on-primary hover:opacity-90 font-label-caps uppercase tracking-widest transition-all duration-300 group shadow-sm hover:shadow"
+              >
+                Learn More
+                <span className="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_right_alt</span>
+              </Link>
+            </div>
+
+            <div className="md:col-span-7 flex flex-col gap-6 font-body-lg text-body-lg text-on-surface-variant leading-relaxed justify-center mt-8 md:mt-0">
+              <p>
+                R.E. Lodronio Builders Inc. is an aggressive design-build firm specializing in new construction and full renovations of commercial buildings, retail spaces, and residences. We offer complete architectural services, interior design, consulting, and end-to-end construction management.
+              </p>
+              <p>
+                Committed to the highest standards, we create successful environments tailored to our clients' budget, timeline, and regulations. Rather than chasing fashionable trends, our philosophy is to build appropriate, innovative architecture responsive to local conditions and client input.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Brief Projects Intro Section */}
+        <section className="w-full py-12 md:py-16 border-b border-white/10 text-white" style={{ backgroundColor: 'rgb(29, 29, 29)' }}>
+          <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-12 gap-gutter">
+            <div className="md:col-span-7 flex flex-col gap-6 font-body-lg text-body-lg text-white/70 leading-relaxed justify-center">
+              <p>
+                From minimalist modern homes to expansive commercial offices, we turn architectural design concepts into structural realities. Discover our portfolio of residential houses and corporate spaces designed for purpose and built to last.
+              </p>
+              <p>
+                We believe every structure should tell a story of craftsmanship and engineering excellence. Explore the details of our latest design-build projects.
+              </p>
+            </div>
+
+            <div className="md:col-span-5 flex flex-col items-start gap-4 justify-center mt-8 md:mt-0 md:pl-8">
+              <span className="font-label-caps text-label-caps text-white/50 uppercase tracking-widest">
+                ( Featured Work )
+              </span>
+              <h2 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-white leading-tight">
+                Our <br />
+                <span className="italic font-light">projects.</span>
+              </h2>
+              <Link
+                to="/projects/residential"
+                className="mt-6 flex items-center gap-2 px-8 py-4 bg-white text-black hover:opacity-90 font-label-caps uppercase tracking-widest transition-all duration-300 group shadow-sm hover:shadow"
+              >
+                View Gallery
+                <span className="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_right_alt</span>
+              </Link>
+            </div>
+          </div>
+        </section>
+
         <section className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pt-8">
 
           <div className="flex flex-col-reverse md:flex-row justify-between items-start md:items-end mb-16 border-b border-outline-variant/30 pb-4 gap-8 md:gap-0">
@@ -244,16 +307,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="border-t border-white/10 py-8 px-margin-mobile md:px-margin-desktop w-full bottom-0" style={{ backgroundColor: 'rgb(29, 29, 29)' }}>
-        <div className="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="font-label-caps text-label-caps text-white/70 tracking-widest uppercase">
-            © 2024 RE Lodronio Builders Inc.
-          </div>
-          <div className="font-label-caps text-label-caps text-white/70 tracking-widest uppercase text-right">
-            Building with purpose.
-          </div>
-        </div>
-      </footer>
+      <Footer />
 
 
 

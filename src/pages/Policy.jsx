@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import DOMPurify from 'dompurify';
@@ -286,10 +287,7 @@ export default function Policy() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-surface-dim py-8 px-margin-mobile md:px-margin-desktop text-on-surface-variant font-label-caps text-label-caps uppercase tracking-widest flex flex-col md:flex-row justify-between items-center gap-4">
-        <div>© 2026 RE Lodronio Builders Inc</div>
-        <div>Building with purpose, since 2008</div>
-      </footer>
+      <Footer />
     </div>
   );
 }

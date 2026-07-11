@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import ImageCollage from '../components/ImageCollage';
+import Footer from '../components/Footer';
 
 // Dynamically import images from the new assets folders
 const residentialImports = import.meta.glob('../assets/residential/*.*', { eager: true, import: 'default' });
@@ -90,16 +91,7 @@ export default function Projects() {
         </section>
       </main>
 
-      <footer className="border-t border-white/10 py-8 px-margin-mobile md:px-margin-desktop w-full" style={{ backgroundColor: 'rgb(29, 29, 29)' }}>
-        <div className="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="font-label-caps text-label-caps text-white/70 tracking-widest uppercase">
-            © 2024 RE Lodronio Builders Inc.
-          </div>
-          <div className="font-label-caps text-label-caps text-white/70 tracking-widest uppercase text-right">
-            Building with purpose.
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 }

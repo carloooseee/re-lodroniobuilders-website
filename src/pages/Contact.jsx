@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 import { collection, addDoc, serverTimestamp, doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 
@@ -256,16 +257,7 @@ export default function Contact() {
                 </section>
             </main>
 
-            <footer className="bg-surface dark:bg-surface text-primary dark:text-on-primary font-body-md text-body-md w-full bottom-0 border-t border-outline-variant/20 mt-auto">
-                <div className="flex flex-col md:flex-row justify-between items-center py-8 md:py-12 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto gap-8">
-                    <div className="font-headline-sm text-headline-sm text-primary dark:text-on-primary">
-                        © 2024 RE Lodronio Builders Inc.
-                    </div>
-                    <div className="text-on-surface-variant text-sm font-label-caps uppercase tracking-widest">
-                        Building with purpose.
-                    </div>
-                </div>
-            </footer>
+            <Footer />
 
         </>
     );

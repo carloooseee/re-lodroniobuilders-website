@@ -2,6 +2,7 @@ import React from 'react';
 import arPicture from '../assets/ARPicture.png';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 export default function About() {
   return (
@@ -185,16 +186,7 @@ export default function About() {
         </section>
       </main>
 
-      <footer className="w-full bottom-0 bg-surface dark:bg-surface border-t border-outline-variant/20 mt-auto">
-        <div className="flex flex-col md:flex-row justify-between items-center py-8 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto gap-8">
-          <div className="font-label-caps text-label-caps uppercase text-on-surface-variant text-[10px]">
-            © 2024 RE Lodronio Builders Inc.
-          </div>
-          <div className="font-label-caps text-label-caps uppercase text-on-surface-variant text-[10px]">
-            Building with purpose, since 2008
-          </div>
-        </div>
-      </footer>
+      <Footer />
 
     </>
   );
