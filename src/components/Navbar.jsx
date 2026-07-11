@@ -31,7 +31,7 @@ export default function Navbar() {
   const showTransparent = isHome && !isScrolled;
 
   const linkClass = (targetPath) => {
-    const isActive = path === targetPath;
+    const isActive = targetPath === '/' ? path === '/' : path.startsWith(targetPath);
     if (showTransparent) {
       return `font-label-caps text-label-caps uppercase tracking-widest transition-colors duration-300 pb-1 border-b-2 ${
         isActive
@@ -68,6 +68,22 @@ export default function Navbar() {
           <div className="hidden md:flex gap-8 items-center">
             <Link className={linkClass('/')} to="/">Home</Link>
             <Link className={linkClass('/about')} to="/about">About Us</Link>
+            
+            {/* Projects Dropdown */}
+            <div className="relative group/dropdown py-2">
+              <button className={`${linkClass('/projects')} flex items-center gap-1 cursor-pointer`}>
+                Projects
+                <span className="material-symbols-outlined text-base select-none transition-transform duration-300 group-hover/dropdown:rotate-180">keyboard_arrow_down</span>
+              </button>
+              
+              <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 pointer-events-none group-hover/dropdown:opacity-100 group-hover/dropdown:pointer-events-auto transition-all duration-300 transform translate-y-2 group-hover/dropdown:translate-y-0 z-50">
+                <div className="bg-surface border border-outline-variant/20 shadow-lg py-2 min-w-[180px] rounded-md flex flex-col">
+                  <Link to="/projects/residential" className="px-5 py-3 text-label-caps uppercase tracking-wider text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors text-left">Residential</Link>
+                  <Link to="/projects/commercial" className="px-5 py-3 text-label-caps uppercase tracking-wider text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors text-left">Commercial</Link>
+                </div>
+              </div>
+            </div>
+
             <Link className={linkClass('/contact')} to="/contact">Contact</Link>
           </div>
 
@@ -84,6 +100,14 @@ export default function Navbar() {
           <div className="md:hidden bg-surface text-primary border-t border-outline-variant/20 px-margin-mobile py-6 flex flex-col gap-4 shadow-lg">
             <Link className={`font-label-caps text-label-caps uppercase tracking-widest py-2 border-b border-outline-variant/10 ${path === '/' ? 'text-primary font-bold' : 'text-on-surface-variant'}`} to="/" onClick={() => setIsOpen(false)}>Home</Link>
             <Link className={`font-label-caps text-label-caps uppercase tracking-widest py-2 border-b border-outline-variant/10 ${path === '/about' ? 'text-primary font-bold' : 'text-on-surface-variant'}`} to="/about" onClick={() => setIsOpen(false)}>About Us</Link>
+            
+            {/* Mobile Projects Submenu */}
+            <div className="flex flex-col border-b border-outline-variant/10 pb-2">
+              <span className="font-label-caps text-label-caps uppercase tracking-widest py-2 text-on-surface-variant/50">Projects</span>
+              <Link className={`font-label-caps text-label-caps uppercase tracking-widest py-2 pl-4 ${path === '/projects/residential' ? 'text-primary font-bold' : 'text-on-surface-variant'}`} to="/projects/residential" onClick={() => setIsOpen(false)}>Residential</Link>
+              <Link className={`font-label-caps text-label-caps uppercase tracking-widest py-2 pl-4 ${path === '/projects/commercial' ? 'text-primary font-bold' : 'text-on-surface-variant'}`} to="/projects/commercial" onClick={() => setIsOpen(false)}>Commercial</Link>
+            </div>
+
             <Link className={`font-label-caps text-label-caps uppercase tracking-widest py-2 ${path === '/contact' ? 'text-primary font-bold' : 'text-on-surface-variant'}`} to="/contact" onClick={() => setIsOpen(false)}>Contact</Link>
           </div>
         )}
