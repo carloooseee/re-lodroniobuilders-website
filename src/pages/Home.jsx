@@ -266,13 +266,13 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="mt-8 bg-surface-container-low pt-8 pb-8 px-margin-mobile md:px-margin-desktop" style={{ backgroundColor: 'rgb(29, 29, 29)' }}>
+        <section className="mt-8 bg-surface pt-8 pb-8 px-margin-mobile md:px-margin-desktop">
           <div className="max-w-container-max mx-auto">
 
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 border-b border-outline-variant/30 pb-4 gap-8 md:gap-0">
-              <h2 className="font-display-lg-mobile md:font-headline-lg text-display-lg-mobile md:text-headline-lg text-on-primary">Exteriors Designs</h2>
+              <h2 className="font-display-lg-mobile md:font-headline-lg text-display-lg-mobile md:text-headline-lg text-primary">Exteriors Designs</h2>
               <a
-                className="font-label-caps text-label-caps hover:text-primary transition-colors flex items-center gap-2 group uppercase tracking-widest text-on-primary/70"
+                className="font-label-caps text-label-caps hover:text-primary transition-colors flex items-center gap-2 group uppercase tracking-widest text-on-surface-variant"
                 href={homeLinks.exteriorLink}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -284,7 +284,7 @@ export default function Home() {
 
             <div className="mb-8">
               <img className="w-full h-auto object-cover aspect-video md:aspect-[21/9] bg-surface-container" data-alt="A striking modern exterior of a multi-story home during daylight. The facade features bold, geometric shapes with a mix of raw, off-form concrete and warm, vertical wooden slats. Large rectangular windows puncture the concrete walls. Two luxury SUVs are parked in the open carport on the ground level. Lush green trees frame the upper portion of the house. The aesthetic is contemporary, structural, and luxurious." src={img('exterior_1', exteriorImg2)} />
-              <p className="font-body-lg text-body-lg mt-6 max-w-3xl text-on-primary/70">
+              <p className="font-body-lg text-body-lg mt-6 max-w-3xl text-on-surface-variant">
                 Bold geometries. The raw texture of off-form concrete finds balance against the rhythmic warmth of vertical wooden slats.
               </p>
             </div>
@@ -292,13 +292,13 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-gutter mt-8">
               <div className="flex flex-col gap-6">
                 <img className="w-full h-auto object-cover aspect-[4/3] bg-surface-container" data-alt="A three-story modern urban home exterior. The design is a study in contrast, featuring rich, dark textured stone on the lower levels and smooth, light plaster on the upper levels. Organic greenery cascades from built-in planters on the balconies, softening the hard architectural lines. Two cars are parked in the driveway behind a sleek metal gate. The lighting suggests early evening." src={img('exterior_0', exteriorImg1)} />
-                <p className="font-body-md text-body-md text-on-primary/70">
+                <p className="font-body-md text-body-md text-on-surface-variant">
                   A study in contrast. Rich stone textures and organic greenery layer together to create a dynamic, multi-tiered urban facade.
                 </p>
               </div>
               <div className="flex flex-col gap-6">
                 <img className="w-full h-auto object-cover aspect-[4/3] bg-surface-container" data-alt="A sleek, expansive modern home exterior featuring dramatic structural cantilevers. The house has a wide, horizontal profile with extensive use of glass, steel, and light gray stone cladding. The cantilevered rooflines provide deep overhangs, blurring the lines between indoor and outdoor living spaces. Three luxury cars are parked in the spacious driveway. The scene is bright and airy, emphasizing seamless design." src={img('exterior_2', exteriorImg3)} />
-                <p className="font-body-md text-body-md text-right md:text-left text-on-primary/70">
+                <p className="font-body-md text-body-md text-right md:text-left text-on-surface-variant">
                   Sleek architectural lines and expansive structural cantilevers define a residence built for seamless indoor-outdoor cohesion.
                 </p>
               </div>
