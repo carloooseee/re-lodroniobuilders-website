@@ -2,23 +2,75 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const textBlocks = [
-  { id: 'text-1', isText: true, content: 'Form follows function.', spanClass: 'md:col-span-2 md:row-span-1 col-span-2 row-span-1', textClass: 'font-serif italic text-2xl text-primary text-center' },
-  { id: 'text-2', isText: true, content: 'Timeless design.', spanClass: 'md:col-span-2 md:row-span-1 col-span-2 row-span-1', textClass: 'font-serif italic text-2xl text-primary text-center' },
-  { id: 'text-3', isText: true, content: 'Building with purpose.', spanClass: 'md:col-span-2 md:row-span-1 col-span-2 row-span-1', textClass: 'font-display-sm text-display-sm text-primary text-center uppercase tracking-widest' },
+  { id: 'text-1', isText: true, content: 'Form follows function.', spanClass: 'md:col-span-2 md:row-span-1 col-span-2 row-span-1', textClass: 'font-serif italic text-2xl text-primary text-center z-20', bgStyle: {
+    background: 'repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(115, 90, 58, 0.16) 10px, rgba(115, 90, 58, 0.16) 20px)',
+    backgroundColor: '#faf6f2'
+  }},
+  { id: 'text-2', isText: true, content: 'Timeless design.', spanClass: 'md:col-span-2 md:row-span-1 col-span-2 row-span-1', textClass: 'font-serif italic text-2xl text-primary text-center z-20', bgStyle: {
+    backgroundImage: 'radial-gradient(rgba(115, 90, 58, 0.4) 2px, transparent 2px)',
+    backgroundSize: '20px 20px',
+    backgroundColor: '#fafafa'
+  }},
+  { id: 'text-3', isText: true, content: 'Building with purpose.', spanClass: 'md:col-span-2 md:row-span-1 col-span-2 row-span-1', textClass: 'font-display-sm text-display-sm text-primary text-center uppercase tracking-widest z-20', bgStyle: {
+    backgroundImage: 'linear-gradient(rgba(0,0,0,0.18) 1.5px, transparent 1.5px), linear-gradient(90deg, rgba(0,0,0,0.18) 1.5px, transparent 1.5px)',
+    backgroundSize: '30px 30px',
+    backgroundColor: '#f3f3f3'
+  }},
+  { id: 'text-4', isText: true, content: 'Space is the breath of art.', spanClass: 'md:col-span-2 md:row-span-1 col-span-2 row-span-1', textClass: 'font-serif italic text-2xl text-primary text-center z-20', bgStyle: {
+    backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0,50 Q25,80 50,50 T100,50' fill='none' stroke='rgba(115, 90, 58, 0.4)' stroke-width='2.5'/%3E%3Cpath d='M0,30 Q25,60 50,30 T100,30' fill='none' stroke='rgba(115, 90, 58, 0.22)' stroke-width='1.5'/%3E%3C/svg%3E\")",
+    backgroundSize: '100% 100%',
+    backgroundColor: '#faf9f6'
+  }},
+  { id: 'text-5', isText: true, content: 'Details make the design.', spanClass: 'md:col-span-2 md:row-span-1 col-span-2 row-span-1', textClass: 'font-display-sm text-display-sm text-primary text-center uppercase tracking-widest z-20', bgStyle: {
+    backgroundImage: 'linear-gradient(30deg, rgba(0,0,0,0.15) 1.5px, transparent 1.5px), linear-gradient(150deg, rgba(0,0,0,0.15) 1.5px, transparent 1.5px)',
+    backgroundSize: '30px 52px',
+    backgroundColor: '#f5f5f5'
+  }},
+  { id: 'text-6', isText: true, content: 'To create, one must first question everything.', spanClass: 'md:col-span-2 md:row-span-1 col-span-2 row-span-1', textClass: 'font-serif italic text-xl text-primary text-center z-20', bgStyle: {
+    backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Ccircle cx='50' cy='50' r='40' fill='none' stroke='rgba(115, 90, 58, 0.35)' stroke-width='2'/%3E%3Ccircle cx='50' cy='50' r='30' fill='none' stroke='rgba(115, 90, 58, 0.18)' stroke-width='1.2'/%3E%3C/svg%3E\")",
+    backgroundSize: '100% 100%',
+    backgroundColor: '#fcfaf7'
+  }},
 ];
 
 const ImageCollage = ({ projects }) => {
   const [shuffledItems, setShuffledItems] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
 
-  // Initial load combining images and text blocks
+  // Helper to weave text blocks evenly into the image list
+  const weaveGalleryItems = (imagesList) => {
+    const shuffledImages = [...imagesList].sort(() => Math.random() - 0.5);
+    const shuffledTexts = [...textBlocks].sort(() => Math.random() - 0.5);
+
+    const combined = [];
+    let textIndex = 0;
+    
+    // Randomize spacing interval between 2 and 4 pictures
+    let nextTrigger = Math.floor(Math.random() * 3) + 2; // Returns 2, 3, or 4
+    let countSinceLastText = 0;
+
+    shuffledImages.forEach((img) => {
+      combined.push(img);
+      countSinceLastText++;
+      
+      if (countSinceLastText === nextTrigger && textIndex < shuffledTexts.length) {
+        combined.push(shuffledTexts[textIndex]);
+        textIndex++;
+        countSinceLastText = 0;
+        nextTrigger = Math.floor(Math.random() * 3) + 2; // Reroll interval for the next card
+      }
+    });
+
+    return combined;
+  };
+
+  // Initial load combining and weaving images and text blocks
   useEffect(() => {
-    setShuffledItems([...projects, ...textBlocks]);
+    setShuffledItems(weaveGalleryItems(projects));
   }, [projects]);
 
   const handleShuffle = () => {
-    const shuffled = [...shuffledItems].sort(() => Math.random() - 0.5);
-    setShuffledItems(shuffled);
+    setShuffledItems(weaveGalleryItems(projects));
   };
 
   const openModal = (imgSrc) => {
@@ -68,7 +120,8 @@ const ImageCollage = ({ projects }) => {
                   exit={{ opacity: 0, scale: 0.8 }}
                   transition={{ duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] }}
                   key={item.id} 
-                  className={`flex items-center justify-center p-8 bg-surface-container-lowest border border-outline-variant/10 z-10 h-[180px] md:h-[350px] ${item.spanClass}`}
+                  style={item.bgStyle}
+                  className={`flex items-center justify-center p-8 border border-outline-variant/10 z-10 h-[180px] md:h-[350px] ${item.spanClass}`}
                 >
                   <p className={item.textClass}>{item.content}</p>
                 </motion.div>
