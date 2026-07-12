@@ -162,7 +162,7 @@ export default function Home() {
       <main className="bg-surface relative z-20 pb-0">
 
         {/* Brief About Section */}
-        <section className="w-full bg-surface-container-low py-8 md:py-12 border-b border-outline-variant/20">
+        <section className="w-full bg-surface-container-low py-16 md:py-24 border-b border-outline-variant/20">
           <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-12 gap-gutter">
             <div className="md:col-span-5 flex flex-col items-start gap-4">
               <span className="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">
@@ -204,7 +204,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="md:col-span-5 flex flex-col items-start gap-4 justify-center mt-8 md:mt-0 md:pl-8">
+            <div className="md:col-span-5 flex flex-col items-start gap-4 justify-center mt-8 md:mt-0 md:pl-44">
               <span className="font-label-caps text-label-caps text-white/50 uppercase tracking-widest">
                 ( Featured Work )
               </span>
