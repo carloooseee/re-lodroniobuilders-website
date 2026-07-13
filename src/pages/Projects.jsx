@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import ProjectPresentation from '../components/ProjectPresentation';
+import ImageCollage from '../components/ImageCollage';
 import Footer from '../components/Footer';
 
 // ─── Residential Images ───────────────────────────────────────────────────────
@@ -254,6 +255,18 @@ export default function Projects() {
 
   const filteredProjects = PROJECT_DATA[activeCategory] || [];
 
+  const galleryImages = filteredProjects.flatMap((project) => {
+    const imgs = [];
+    if (project.renderImage) imgs.push({ id: project.id + '-render', image: project.renderImage, title: project.title });
+    if (project.actualImage) imgs.push({ id: project.id + '-actual', image: project.actualImage, title: project.title });
+    if (project.additionalImages) {
+      project.additionalImages.forEach((img, i) => {
+        imgs.push({ id: project.id + '-extra-' + i, image: img, title: project.title });
+      });
+    }
+    return imgs;
+  });
+
   return (
     <>
       <Navbar />
@@ -301,6 +314,12 @@ export default function Projects() {
           {/* Project Presentation Area */}
           <div className="border-t border-outline-variant/20 pt-16 mt-8">
             <ProjectPresentation projects={filteredProjects} />
+          </div>
+
+          {/* Shuffle Gallery Area */}
+          <div className="border-t border-outline-variant/20 pt-16 mt-16">
+            <h2 className="font-display-md text-display-md text-primary mb-8 text-center uppercase tracking-widest">( Project Gallery )</h2>
+            <ImageCollage projects={galleryImages} />
           </div>
         </section>
       </main>
