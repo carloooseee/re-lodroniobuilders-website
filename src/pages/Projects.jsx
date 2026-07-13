@@ -92,6 +92,19 @@ import house11extra6 from '../assets/Residential/extra/house11extra6.png';
 import house11extra7 from '../assets/Residential/extra/house11extra7.png';
 import house11extra8 from '../assets/Residential/extra/house11extra8.png';
 
+import houserender12 from '../assets/Residential/houserender/houserender12.png';
+import houseactual12 from '../assets/Residential/houseactual/houseactual12.png';
+import house12extra1 from '../assets/Residential/extra/house12extra1.png';
+import house12extra2 from '../assets/Residential/extra/house12extra2.png';
+import house12extra3 from '../assets/Residential/extra/house12extra3.png';
+import house12extra4 from '../assets/Residential/extra/house12extra4.png';
+
+import houserender13 from '../assets/Residential/houserender/houserender13.png';
+import houseactual13 from '../assets/Residential/houseactual/houseactual13.png';
+import house13extra1 from '../assets/Residential/extra/house13extra1.png';
+import house13extra2 from '../assets/Residential/extra/house13extra2.png';
+import house13extra3 from '../assets/Residential/extra/house13extra3.png';
+
 // ─── Commercial Images ────────────────────────────────────────────────────────
 // Naming convention:
 //   commercialrender{N}  → 3D render photo for commercial project N
@@ -102,20 +115,21 @@ import commercialrender1 from '../assets/Commercial/commercialrender1.png';
 import commercialactual1 from '../assets/Commercial/commercialactual1.png';
 import commercial1extra1 from '../assets/Commercial/commercial1extra1.png';
 import commercial1extra2 from '../assets/Commercial/commercial1extra2.png';
-import commercial1extra3 from '../assets/Commercial/commercial1extra3.png';
 
 import commercialrender2 from '../assets/Commercial/commercialrender2.png';
 import commercialactual2 from '../assets/Commercial/commercialactual2.png';
-import commercial2extra1 from '../assets/Commercial/commercial2extra1.png';
-import commercial2extra2 from '../assets/Commercial/commercial2extra2.png';
-import commercial2extra3 from '../assets/Commercial/commercial2extra3.png';
-import commercial2extra4 from '../assets/Commercial/commercial2extra4.png';
 
 import commercialrender3 from '../assets/Commercial/commercialrender3.png';
 import commercialactual3 from '../assets/Commercial/commercialactual3.png';
 import commercial3extra1 from '../assets/Commercial/commercial3extra1.png';
-import commercial3extra2 from '../assets/Commercial/commercial3extra2.png';
-import commercial3extra3 from '../assets/Commercial/commercial3extra3.png';
+
+import commercialrender4 from '../assets/Commercial/commercialrender4.png';
+import commercialactual4 from '../assets/Commercial/commercialactual4.png';
+import commercial4extra1 from '../assets/Commercial/commercial4extra1.png';
+
+import commercialrender5 from '../assets/Commercial/commercialrender5.png';
+import commercialactual5 from '../assets/Commercial/commercialactual5.png';
+
 
 // ─── Project Data ─────────────────────────────────────────────────────────────
 // Edit titles, locations, descriptions, and swap image imports here.
@@ -251,34 +265,74 @@ const PROJECT_DATA = {
         house11extra5, house11extra6, house11extra7, house11extra8
       ],
     },
+    {
+      id: 'res-12',
+      title: 'Two-Storey Residence',
+      location: 'Punta Fuego, Batangas',
+      description: 'A luxurious two-storey modern residence showcasing refined architectural elements and seamlessly integrated indoor-outdoor spaces for sophisticated coastal living.',
+      renderImage: houserender12,
+      actualImage: houseactual12,
+      additionalImages: [
+        house12extra1, house12extra2, house12extra3, house12extra4
+      ],
+    },
+    {
+      id: 'res-13',
+      title: 'Three-Storey Residence',
+      location: 'Silang, Cavite',
+      description: 'A contemporary three-storey residence set amidst lush greenery, featuring expansive balconies and large windows that seamlessly blend modern design with its serene natural surroundings.',
+      renderImage: houserender13,
+      actualImage: houseactual13,
+      additionalImages: [
+        house13extra1, house13extra2, house13extra3
+      ],
+    },
   ],
   commercial: [
     {
       id: 'comm-1',
-      title: 'RE Builders Head Office',
-      location: 'Makati, Metro Manila',
-      description: 'A modern corporate workspace focusing on open collaboration, ergonomic workspaces, and clean architectural design.',
+      title: 'One-Storey Skin and Laser Center',
+      location: 'Las Piñas City',
+      description: 'A modern, state-of-the-art commercial skin and laser clinic featuring clean, minimalist architectural design and clinical workspaces optimized for client comfort.',
       renderImage: commercialrender1,
       actualImage: commercialactual1,
-      additionalImages: [commercial1extra1, commercial1extra2, commercial1extra3],
+      additionalImages: [commercial1extra1, commercial1extra2],
     },
     {
       id: 'comm-2',
-      title: 'The Apex Executive Offices',
-      location: 'BGC, Taguig City',
-      description: 'A high-end corporate fit-out showcasing premium materials, custom acoustic paneling, and advanced smart systems.',
+      title: 'Four-Storey Commercial Building',
+      location: 'Las Piñas City',
+      description: 'A four-story commercial building with a dark cantilevered upper facade, ribbon windows with warm accent lighting, and a ground-floor retail storefront wrapped in glass and stone tile.',
       renderImage: commercialrender2,
       actualImage: commercialactual2,
-      additionalImages: [commercial2extra1, commercial2extra2, commercial2extra3, commercial2extra4],
+      additionalImages: [],
     },
     {
       id: 'comm-3',
-      title: 'Lakeside Retail Center',
-      location: 'Nuvali, Laguna',
-      description: 'A modern outdoor shopping complex featuring steel-framed double-height storefronts and landscaped pedestrian pathways.',
+      title: 'Two-Storey Commercial Building',
+      location: 'Las Piñas City',
+      description: 'A boxy modern townhouse duplex with vertical wood-slat and stone-panel facades, twin street-level carports, and slatted steel gates enclosing the driveway.',
       renderImage: commercialrender3,
       actualImage: commercialactual3,
-      additionalImages: [commercial3extra1, commercial3extra2, commercial3extra3],
+      additionalImages: [commercial3extra1],
+    },
+    {
+      id: 'comm-4',
+      title: 'Two-Storey Commercial Building Renovation',
+      location: 'Las Piñas City',
+      description: 'A two-story commercial storefront with bold geometric mural cladding, blank signage panels above a full-glass ground floor, and a wraparound balcony with steel railings.',
+      renderImage: commercialrender4,
+      actualImage: commercialactual4,
+      additionalImages: [commercial4extra1],
+    },
+    {
+      id: 'comm-5',
+      title: 'Monterey Community Market',
+      location: 'Las Piñas City',
+      description: 'A two-story corner retail building with a bold red canopy and storefront, wood-slat cladding above, and a winged metal roof overhang shading the sidewalk signage.',
+      renderImage: commercialrender5,
+      actualImage: commercialactual5,
+      additionalImages: [],
     },
   ],
 };
