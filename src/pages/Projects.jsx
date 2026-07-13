@@ -77,6 +77,21 @@ import house9extra1 from '../assets/Residential/extra/house9extra1.png';
 import house9extra2 from '../assets/Residential/extra/house9extra2.png';
 import house9extra3 from '../assets/Residential/extra/house9extra3.png';
 
+import houserender10 from '../assets/Residential/houserender/houserender10.png';
+import houseactual10 from '../assets/Residential/houseactual/House10actual1.png';
+import house10extra1 from '../assets/Residential/extra/House10extra1.png';
+
+import houserender11 from '../assets/Residential/houserender/houserender11.png';
+import houseactual11 from '../assets/Residential/houseactual/houseactual11.png';
+import house11extra1 from '../assets/Residential/extra/house11extra1.png';
+import house11extra2 from '../assets/Residential/extra/house11extra2.png';
+import house11extra3 from '../assets/Residential/extra/house11extra3.png';
+import house11extra4 from '../assets/Residential/extra/house11extra4.png';
+import house11extra5 from '../assets/Residential/extra/house11extra5.png';
+import house11extra6 from '../assets/Residential/extra/house11extra6.png';
+import house11extra7 from '../assets/Residential/extra/house11extra7.png';
+import house11extra8 from '../assets/Residential/extra/house11extra8.png';
+
 // ─── Commercial Images ────────────────────────────────────────────────────────
 // Naming convention:
 //   commercialrender{N}  → 3D render photo for commercial project N
@@ -211,6 +226,29 @@ const PROJECT_DATA = {
       actualImage: houseactual9,
       additionalImages: [
         house9extra1, house9extra2, house9extra3
+      ],
+    },
+    {
+      id: 'res-10',
+      title: 'Modern Residence',
+      location: 'Metro Manila',
+      description: 'An expansive residential project featuring clean lines, premium outdoor spaces, and thoughtfully designed living areas.',
+      renderImage: houserender10,
+      actualImage: houseactual10,
+      additionalImages: [
+        house10extra1
+      ],
+    },
+    {
+      id: 'res-11',
+      title: 'Two-Storey Residence with Roof Deck',
+      location: 'Ayala, Alabang',
+      description: 'A contemporary two-storey residence featuring a spacious roof deck, seamlessly blending modern aesthetics with functional outdoor living areas.',
+      renderImage: houserender11,
+      actualImage: houseactual11,
+      additionalImages: [
+        house11extra1, house11extra2, house11extra3, house11extra4,
+        house11extra5, house11extra6, house11extra7, house11extra8
       ],
     },
   ],
