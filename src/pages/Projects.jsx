@@ -245,6 +245,13 @@ const PROJECT_DATA = {
   ],
 };
 
+const galleryModules = import.meta.glob('../assets/Gallery/*.{png,jpg,jpeg,svg,webp}', { eager: true });
+const galleryImagesFromFolder = Object.keys(galleryModules).map((path, index) => ({
+  id: `gallery-img-${index}`,
+  image: galleryModules[path].default,
+  title: `Gallery Image ${index + 1}`
+}));
+
 export default function Projects() {
   const { category } = useParams();
   const activeCategory = category === 'commercial' ? 'commercial' : 'residential';
@@ -254,18 +261,6 @@ export default function Projects() {
   }, [category]);
 
   const filteredProjects = PROJECT_DATA[activeCategory] || [];
-
-  const galleryImages = filteredProjects.flatMap((project) => {
-    const imgs = [];
-    if (project.renderImage) imgs.push({ id: project.id + '-render', image: project.renderImage, title: project.title });
-    if (project.actualImage) imgs.push({ id: project.id + '-actual', image: project.actualImage, title: project.title });
-    if (project.additionalImages) {
-      project.additionalImages.forEach((img, i) => {
-        imgs.push({ id: project.id + '-extra-' + i, image: img, title: project.title });
-      });
-    }
-    return imgs;
-  });
 
   return (
     <>
@@ -319,7 +314,7 @@ export default function Projects() {
           {/* Shuffle Gallery Area */}
           <div className="border-t border-outline-variant/20 pt-16 mt-16">
             <h2 className="font-display-md text-display-md text-primary mb-8 text-center uppercase tracking-widest">( Project Gallery )</h2>
-            <ImageCollage projects={galleryImages} />
+            <ImageCollage projects={galleryImagesFromFolder} />
           </div>
         </section>
       </main>
