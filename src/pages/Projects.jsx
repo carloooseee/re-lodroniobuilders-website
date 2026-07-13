@@ -141,7 +141,7 @@ const PROJECT_DATA = {
       id: 'res-4',
       title: 'Two-storey Residence',
       location: 'Ayala, Alabang',
-      description: 'AA luxurious contemporary residence featuring clean architectural lines, expansive glass elements, and refined finishes that create a seamless blend of elegance, comfort, and modern living.',
+      description: 'A luxurious contemporary residence featuring clean architectural lines, expansive glass elements, and refined finishes that create a seamless blend of elegance, comfort, and modern living.',
       renderImage: houserender4,
       actualImage: houseactual4,
       additionalImages: [
