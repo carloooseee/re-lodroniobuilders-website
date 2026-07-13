@@ -11,34 +11,70 @@ import Footer from '../components/Footer';
 //   houseactual{N}  → actual build photo for house N
 //   house{N}extra{M} → extra thumbnail M for house N
 
-import houserender1 from '../assets/Residential/houserender1.png';
-import houseactual1 from '../assets/Residential/houseactual1.png';
+import houserender1 from '../assets/Residential/houserender/houserender1.png';
+import houseactual1 from '../assets/Residential/houseactual/houseactual1.png';
 
-import houserender2 from '../assets/Residential/houserender2.jpg';
-import houseactual2 from '../assets/Residential/houseactual2.jpg';
-import house2extra1 from '../assets/Residential/house2extra1.jpg';
-import house2extra2 from '../assets/Residential/house2extra2.jpg';
-import house2extra3 from '../assets/Residential/house2extra3.jpg';
+import houserender2 from '../assets/Residential/houserender/houserender2.png';
+import houseactual2 from '../assets/Residential/houseactual/houseactual2.jpg';
+import house2extra1 from '../assets/Residential/extra/house2extra1.jpg';
+import house2extra2 from '../assets/Residential/extra/house2extra2.png';
 
-import houserender3 from '../assets/Residential/houserender3.jpg';
-import houseactual3 from '../assets/Residential/houseactual3.jpg';
-import house3extra1 from '../assets/Residential/house3extra1.jpg';
-import house3extra2 from '../assets/Residential/house3extra2.jpg';
-import house3extra3 from '../assets/Residential/house3extra3.jpg';
-import house3extra4 from '../assets/Residential/house3extra4.jpg';
+import houserender3 from '../assets/Residential/houserender/houserender3.jpg';
+import houseactual3 from '../assets/Residential/houseactual/houseactual3.jpg';
+import house3extra1 from '../assets/Residential/extra/house3extra1.png';
+import house3extra2 from '../assets/Residential/extra/house3extra2.png';
+import house3extra3 from '../assets/Residential/extra/house3extra3.png';
+import house3extra4 from '../assets/Residential/extra/house3extra4.png';
+import house3extra5 from '../assets/Residential/extra/house3extra5.png';
+import house3extra6 from '../assets/Residential/extra/house3extra6.png';
+import house3extra7 from '../assets/Residential/extra/house3extra7.png';
+import house3extra8 from '../assets/Residential/extra/house3extra8.png';
+import house3extra9 from '../assets/Residential/extra/house3extra9.png';
 
-import houserender4 from '../assets/Residential/houserender4.jpg';
-import houseactual4 from '../assets/Residential/houseactual4.jpg';
-import house4extra1 from '../assets/Residential/house4extra1.jpg';
-import house4extra2 from '../assets/Residential/house4extra2.jpg';
-import house4extra3 from '../assets/Residential/house4extra3.jpg';
+import houserender4 from '../assets/Residential/houserender/houserender4.png';
+import houseactual4 from '../assets/Residential/houseactual/houseactual4.png';
+import house4extra01 from '../assets/Residential/extra/house4extra01.png';
+import house4extra02 from '../assets/Residential/extra/house4extra02.png';
+import house4extra03 from '../assets/Residential/extra/house4extra03.png';
+import house4extra04 from '../assets/Residential/extra/house4extra04.png';
+import house4extra05 from '../assets/Residential/extra/house4extra05.png';
+import house4extra06 from '../assets/Residential/extra/house4extra06.png';
 
-import houserender5 from '../assets/Residential/houserender5.jpg';
-import houseactual5 from '../assets/Residential/houseactual5.jpg';
-import house5extra1 from '../assets/Residential/house5extra1.jpg';
-import house5extra2 from '../assets/Residential/house5extra2.jpg';
-import house5extra3 from '../assets/Residential/house5extra3.jpg';
-import house5extra4 from '../assets/Residential/house5extra4.jpg';
+import houserender5 from '../assets/Residential/houserender/houserender5.png';
+import houseactual5 from '../assets/Residential/houseactual/houseactual5.png';
+import house5extra1 from '../assets/Residential/extra/house5extra1.png';
+import house5extra2 from '../assets/Residential/extra/house5extra2.png';
+import house5extra3 from '../assets/Residential/extra/house5extra3.png';
+import house5extra4 from '../assets/Residential/extra/house5extra4.png';
+import house5extra5 from '../assets/Residential/extra/house5extra5.png';
+import house5extra6 from '../assets/Residential/extra/house5extra6.png';
+import house5extra7 from '../assets/Residential/extra/house5extra7.png';
+import house5extra8 from '../assets/Residential/extra/house5extra8.png';
+import house5extra9 from '../assets/Residential/extra/house5extra9.png';
+
+import houserender6 from '../assets/Residential/houserender/houserender6.png';
+import houseactual6 from '../assets/Residential/houseactual/houseactual6.png';
+import house6extra1 from '../assets/Residential/extra/house6extra1.png';
+import house6extra2 from '../assets/Residential/extra/house6extra2.png';
+import house6extra3 from '../assets/Residential/extra/house6extra3.png';
+
+import houserender7 from '../assets/Residential/houserender/houserender7.png';
+import houseactual7 from '../assets/Residential/houseactual/houseactual7.png';
+import house7extra1 from '../assets/Residential/extra/house7extra1.png';
+import house7extra2 from '../assets/Residential/extra/house7extra2.png';
+import house7extra3 from '../assets/Residential/extra/house7extra3.png';
+
+import houserender8 from '../assets/Residential/houserender/Houserender8.png';
+import houseactual8 from '../assets/Residential/houseactual/Houseactual8.png';
+import house8extra1 from '../assets/Residential/extra/house8extra1.png';
+import house8extra2 from '../assets/Residential/extra/house8extra2.png';
+import house8extra3 from '../assets/Residential/extra/house8extra3.png';
+
+import houserender9 from '../assets/Residential/houserender/Houserender9.png';
+import houseactual9 from '../assets/Residential/houseactual/Houseactual9.png';
+import house9extra1 from '../assets/Residential/extra/house9extra1.png';
+import house9extra2 from '../assets/Residential/extra/house9extra2.png';
+import house9extra3 from '../assets/Residential/extra/house9extra3.png';
 
 // ─── Commercial Images ────────────────────────────────────────────────────────
 // Naming convention:
@@ -72,6 +108,37 @@ import commercial3extra3 from '../assets/Commercial/commercial3extra3.png';
 const PROJECT_DATA = {
   residential: [
     {
+      id: 'res-4',
+      title: 'Two-storey Residence',
+      location: 'Ayala, Alabang',
+      description: 'AA luxurious contemporary residence featuring clean architectural lines, expansive glass elements, and refined finishes that create a seamless blend of elegance, comfort, and modern living.',
+      renderImage: houserender4,
+      actualImage: houseactual4,
+      additionalImages: [
+        house4extra01, house4extra02, house4extra03, house4extra04,
+        house4extra05, house4extra06
+      ],
+    },
+    {
+      id: 'res-3',
+      title: 'Two-storey Residence',
+      location: 'Sta. Rosa, Laguna',
+      description: 'A contemporary family home designed with refined architectural details, premium exterior finishes, and spacious interiors, creating a perfect balance of luxury, functionality, and everyday living.',
+      renderImage: houserender3,
+      actualImage: houseactual3,
+      additionalImages: [
+        house3extra1,
+        house3extra2,
+        house3extra3,
+        house3extra4,
+        house3extra5,
+        house3extra6,
+        house3extra7,
+        house3extra8,
+        house3extra9
+      ],
+    },
+    {
       id: 'res-1',
       title: 'Two-Storey Apartment Building',
       location: 'Muntinlupa City, Metro Manila',
@@ -82,39 +149,68 @@ const PROJECT_DATA = {
     },
     {
       id: 'res-2',
-      title: 'Glass & Steel Residence',
-      location: 'Tagaytay, Cavite',
-      description: 'An elegant retreat featuring expansive glass panels, bold steel structural geometries, and scenic views.',
+      title: 'Two-storey Residence',
+      location: 'Magallanes, Cavite',
+      description: 'A contemporary two-story residence showcasing clean architectural lines, expansive glazing, and a seamless blend of indoor and outdoor spaces, designed to deliver comfort, elegance, and timeless functionality.',
       renderImage: houserender2,
       actualImage: houseactual2,
-      additionalImages: [house2extra1, house2extra2, house2extra3],
-    },
-    {
-      id: 'res-3',
-      title: 'Contemporary Urban Oasis',
-      location: 'Alabang, Metro Manila',
-      description: 'A multi-generational home with integrated green spaces, open-concept living, and a private pool area.',
-      renderImage: houserender3,
-      actualImage: houseactual3,
-      additionalImages: [house3extra1, house3extra2, house3extra3, house3extra4],
-    },
-    {
-      id: 'res-4',
-      title: 'Sophisticated Suburban Home',
-      location: 'Nuvali, Laguna',
-      description: 'A beautiful modern home featuring natural stone accents, vertical wood siding, and eco-friendly solar solutions.',
-      renderImage: houserender4,
-      actualImage: houseactual4,
-      additionalImages: [house4extra1, house4extra2, house4extra3],
+      additionalImages: [house2extra1, house2extra2],
     },
     {
       id: 'res-5',
-      title: 'Minimalist Cuboid Residence',
-      location: 'Antipolo, Rizal',
-      description: 'A sleek white cuboid design with panoramic city views, cantilevered structures, and custom interior finishes.',
+      title: 'Three-storey Residence',
+      location: 'Las Pinas, Metro Manila',
+      description: 'A modern three-story corner residence with wood-panel accents, dark stone cladding, planted balconies, and a rooftop deck framed by slender steel railings.',
       renderImage: houserender5,
       actualImage: houseactual5,
-      additionalImages: [house5extra1, house5extra2, house5extra3, house5extra4],
+      additionalImages: [
+        house5extra1, house5extra2, house5extra3, house5extra4, house5extra5,
+        house5extra6, house5extra7, house5extra8, house5extra9
+      ],
+    },
+    {
+      id: 'res-6',
+      title: 'Two-storey residence',
+      location: 'Carmona Cavite',
+      description: 'A twilight-lit modern villa with warm timber cladding, a colonnaded veranda, solar-paneled hip roof, and manicured gardens set against a wooded backdrop.',
+      renderImage: houserender6,
+      actualImage: houseactual6,
+      additionalImages: [
+        house6extra1, house6extra2, house6extra3
+      ],
+    },
+    {
+      id: 'res-7',
+      title: 'Two-Storey Residence',
+      location: 'Las Pinas, Metro Manila',
+      description: 'A textured concrete facade with vertical timber slat screening, an angular covered entryway, and a cantilevered carport wide enough for two vehicles.',
+      renderImage: houserender7,
+      actualImage: houseactual7,
+      additionalImages: [
+        house7extra1, house7extra2, house7extra3
+      ],
+    },
+    {
+      id: 'res-8',
+      title: 'Two-storey Residence',
+      location: 'Paranaque, Metro Manila',
+      description: 'A Mediterranean-style estate with terracotta tile roofs, exposed wood rafter tails, arched colonnades, and decorative fretwork screens surrounding a fountain courtyard.',
+      renderImage: houserender8,
+      actualImage: houseactual8,
+      additionalImages: [
+        house8extra1, house8extra2, house8extra3
+      ],
+    },
+    {
+      id: 'res-9',
+      title: 'One-Storey Residence',
+      location: 'Tagaytay City, Cavite',
+      description: 'A single-story indoor-outdoor pavilion with floor-to-ceiling glass walls, an extended timber-lined roof overhang, and a covered patio dining area opening onto the lawn.',
+      renderImage: houserender9,
+      actualImage: houseactual9,
+      additionalImages: [
+        house9extra1, house9extra2, house9extra3
+      ],
     },
   ],
   commercial: [
