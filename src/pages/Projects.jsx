@@ -404,10 +404,12 @@ export default function Projects() {
           </div>
 
           {/* Shuffle Gallery Area */}
-          <div className="border-t border-outline-variant/20 pt-16 mt-16">
-            <h2 className="font-display-md text-display-md text-primary mb-8 text-center uppercase tracking-widest">( Project Gallery )</h2>
-            <ImageCollage projects={galleryImagesFromFolder} />
-          </div>
+          {activeCategory !== 'commercial' && (
+            <div className="border-t border-outline-variant/20 pt-16 mt-16">
+              <h2 className="font-display-md text-display-md text-primary mb-8 text-center uppercase tracking-widest">( Project Gallery )</h2>
+              <ImageCollage projects={galleryImagesFromFolder} />
+            </div>
+          )}
         </section>
       </main>
 
