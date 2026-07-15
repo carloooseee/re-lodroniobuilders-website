@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import ProjectPresentation from '../components/ProjectPresentation';
 import ImageCollage from '../components/ImageCollage';
 import Footer from '../components/Footer';
+import { db } from '../firebase';
+import { doc, getDoc } from 'firebase/firestore';
 
 // ─── Residential Images ───────────────────────────────────────────────────────
 // To swap a photo, replace the filename below with your new file (keep it in src/assets/Residential/).
@@ -348,11 +350,45 @@ export default function Projects() {
   const { category } = useParams();
   const activeCategory = category === 'commercial' ? 'commercial' : 'residential';
 
+  const [projectsData, setProjectsData] = useState({ residential: [], commercial: [], gallery: [] });
+
+  useEffect(() => {
+    const fetchProjectsData = async () => {
+      try {
+        const snap = await getDoc(doc(db, 'siteSettings', 'projectsData'));
+        if (snap.exists()) {
+          const data = snap.data();
+          setProjectsData({
+            residential: data.residential || [],
+            commercial: data.commercial || [],
+            gallery: data.gallery || []
+          });
+        }
+      } catch (error) {
+        console.error('Error fetching projects data:', error);
+      }
+    };
+    fetchProjectsData();
+  }, []);
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [category]);
 
-  const filteredProjects = PROJECT_DATA[activeCategory] || [];
+  const hardcodedProjects = PROJECT_DATA[activeCategory] || [];
+  const fetchedProjects = projectsData[activeCategory] || [];
+  
+  const hiddenIds = projectsData.hiddenHardcoded || [];
+  const visibleHardcoded = hardcodedProjects.filter(p => !hiddenIds.includes(p.id));
+  
+  const filteredProjects = [...visibleHardcoded, ...fetchedProjects];
+
+  const fetchedGallery = projectsData.gallery.map((url, index) => ({
+    id: `gallery-fetched-${index}`,
+    image: url,
+    title: `Added Gallery Image ${index + 1}`
+  }));
+  const mergedGalleryImages = [...galleryImagesFromFolder, ...fetchedGallery];
 
   return (
     <>
@@ -407,7 +443,7 @@ export default function Projects() {
           {activeCategory !== 'commercial' && (
             <div className="border-t border-outline-variant/20 pt-16 mt-16">
               <h2 className="font-display-md text-display-md text-primary mb-8 text-center uppercase tracking-widest">( Project Gallery )</h2>
-              <ImageCollage projects={galleryImagesFromFolder} />
+              <ImageCollage projects={mergedGalleryImages} />
             </div>
           )}
         </section>
