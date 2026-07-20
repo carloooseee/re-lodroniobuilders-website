@@ -10,6 +10,7 @@ import interiorImg3 from '../assets/Interior/Interior3.png';
 import exteriorImg1 from '../assets/Exterior/Exterior1.png';
 import exteriorImg2 from '../assets/Exterior/Exterior2.png';
 import exteriorImg3 from '../assets/Exterior/Exterior3.png';
+import siteVideo from '../assets/video/GungonSiteVideo.mp4';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import { db } from '../firebase';
@@ -19,6 +20,8 @@ export default function Home() {
   const [activeSlide, setActiveSlide] = useState(0);
   const [siteImages, setSiteImages] = useState({});
   const [brokenImages, setBrokenImages] = useState({});
+  const [videoDuration, setVideoDuration] = useState(0);
+  const videoRef = React.useRef(null);
 
   const [homeLinks, setHomeLinks] = useState({
     interiorLink: 'https://www.canva.com/design/DAHCMP8YuQ4/ns4gpTaWhngEH-_kbo6pmg/view?utm_content=DAHCMP8YuQ4&utm_campaign=designshare&utm_medium=link&utm_source=viewer',
@@ -81,18 +84,30 @@ export default function Home() {
   };
 
   const slides = [
-    img('hero_0', houseImg1),
-    img('hero_1', houseImg2),
-    img('hero_2', houseImg3),
-    img('hero_3', houseImg4),
+    { type: 'video', src: siteVideo },
+    { type: 'image', src: img('hero_0', houseImg1) },
+    { type: 'image', src: img('hero_1', houseImg2) },
+    { type: 'image', src: img('hero_2', houseImg3) },
+    { type: 'image', src: img('hero_3', houseImg4) },
   ];
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setActiveSlide((prev) => (prev + 1) % slides.length);
-    }, 6000); // cycle every 6 seconds
-    return () => clearInterval(timer);
-  }, [slides.length]);
+    let timer;
+    if (slides[activeSlide].type === 'image') {
+      timer = setTimeout(() => {
+        setActiveSlide((prev) => (prev + 1) % slides.length);
+      }, 6000); // cycle every 6 seconds
+    } else if (slides[activeSlide].type === 'video') {
+      if (videoRef.current) {
+        videoRef.current.currentTime = 0;
+        videoRef.current.play().catch(e => {
+          console.warn("Video auto-play failed", e);
+          timer = setTimeout(() => setActiveSlide(p => (p + 1) % slides.length), 6000);
+        });
+      }
+    }
+    return () => clearTimeout(timer);
+  }, [activeSlide, slides.length]);
 
   return (
     <>
@@ -100,19 +115,42 @@ export default function Home() {
 
       <header className="relative w-full min-h-screen pt-28 pb-10 flex flex-col justify-between overflow-hidden">
 
-        <div className="absolute inset-0 z-0 after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-r after:from-black/60 after:to-transparent overflow-hidden">
-          {slides.map((slideUrl, idx) => (
-            <div
-              key={idx}
-              className="absolute inset-0 bg-cover bg-center"
-              style={{
-                backgroundImage: `url(${slideUrl})`,
-                opacity: idx === activeSlide ? 1 : 0,
-                transform: idx === activeSlide ? 'scale(1.08)' : 'scale(1)',
-                transition: 'opacity 1.5s ease-in-out, transform 6.0s cubic-bezier(0.25, 1, 0.5, 1)',
-              }}
-            />
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          {slides.map((slide, idx) => (
+            slide.type === 'video' ? (
+              <video
+                key={idx}
+                ref={videoRef}
+                className="absolute inset-0 w-full h-full object-cover"
+                src={slide.src}
+                muted
+                playsInline
+                onLoadedMetadata={(e) => setVideoDuration(e.target.duration)}
+                onEnded={() => setActiveSlide((prev) => (prev + 1) % slides.length)}
+                style={{
+                  opacity: idx === activeSlide ? 1 : 0,
+                  transform: idx === activeSlide ? 'scale(1.08)' : 'scale(1)',
+                  transition: 'opacity 1.5s ease-in-out, transform 6.0s cubic-bezier(0.25, 1, 0.5, 1)',
+                  zIndex: idx === activeSlide ? 1 : 0
+                }}
+              />
+            ) : (
+              <div
+                key={idx}
+                className="absolute inset-0 bg-cover bg-center"
+                style={{
+                  backgroundImage: `url(${slide.src})`,
+                  opacity: idx === activeSlide ? 1 : 0,
+                  transform: idx === activeSlide ? 'scale(1.08)' : 'scale(1)',
+                  transition: 'opacity 1.5s ease-in-out, transform 6.0s cubic-bezier(0.25, 1, 0.5, 1)',
+                  zIndex: idx === activeSlide ? 1 : 0
+                }}
+              />
+            )
           ))}
+          <div
+            className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent pointer-events-none"
+          />
         </div>
 
         {/* Top Spacer to balance the layout with header/navbar */}
@@ -131,8 +169,13 @@ export default function Home() {
         {/* Bottom Banner */}
         <div className="relative z-10 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop text-on-primary">
           <div className="flex items-end justify-between border-b border-on-primary/30 pb-4">
-            <h2 className="font-body-md text-body-md italic">Residence project</h2>
-            <div className="flex items-center gap-4">
+            <h2 className="font-body-md text-body-md italic">
+              Gungon Residence
+            </h2>
+            <div 
+              className="flex items-center gap-4 transition-opacity duration-700"
+              style={{ opacity: slides[activeSlide].type === 'video' ? 0 : 1, pointerEvents: slides[activeSlide].type === 'video' ? 'none' : 'auto' }}
+            >
               <div className="flex gap-2">
                 {slides.map((_, idx) => {
                   const isActive = idx === activeSlide;
@@ -147,13 +190,14 @@ export default function Home() {
                         className={`h-full bg-on-primary absolute top-0 left-0 ${isActive ? 'animate-progress-bar' : ''}`}
                         style={{
                           width: isPrevious ? '100%' : '0%',
+                          animationDuration: isActive && slides[idx].type === 'video' && videoDuration ? `${videoDuration}s` : undefined
                         }}
                       />
                     </div>
                   );
                 })}
               </div>
-              <span className="font-label-caps text-label-caps ml-4">{activeSlide + 1}/4</span>
+              <span className="font-label-caps text-label-caps ml-4">{activeSlide + 1}/{slides.length}</span>
             </div>
           </div>
         </div>
