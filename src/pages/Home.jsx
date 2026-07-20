@@ -82,7 +82,23 @@ export default function Home() {
       videoRef.current.play().catch(e => {
         console.warn("Video auto-play failed", e);
       });
+      // Set initial scale and transform
+      videoRef.current.style.transform = 'translate3d(0, 0, 0) scale(1.15)';
+      videoRef.current.style.transformOrigin = 'center center';
     }
+
+    const handleScroll = () => {
+      if (videoRef.current) {
+        const scrolled = window.pageYOffset || document.documentElement.scrollTop;
+        // Translate the video down at 40% of the scroll speed
+        videoRef.current.style.transform = `translate3d(0, ${scrolled * 0.4}px, 0) scale(1.15)`;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   return (
@@ -91,7 +107,7 @@ export default function Home() {
 
       <header className="relative w-full min-h-screen pt-28 pb-10 flex flex-col justify-between overflow-hidden">
 
-        <div className="absolute inset-0 z-0 overflow-hidden">
+        <div className="absolute inset-0 z-0 overflow-hidden bg-black">
           <video
             ref={videoRef}
             className="absolute inset-0 w-full h-full object-cover"
@@ -102,7 +118,6 @@ export default function Home() {
             autoPlay
             style={{
               opacity: 1,
-              transform: 'scale(1)',
               zIndex: 0
             }}
           />
